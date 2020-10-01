@@ -1,24 +1,70 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリケーション名
+-- Qook
 
-Things you may want to cover:
+## アプリケーション概要
+-- 冷蔵庫にある食材で調理することが可能な料理のレシピ一覧を表示する
+-- 冷蔵庫にある食材の管理をする
 
-* Ruby version
+## URL
+-- AWSへデプロイ後に記述
 
-* System dependencies
+## テスト用アカウント
+-- ゲストユーザーを作成予定
 
-* Configuration
+## 利用方法(調理可能なレシピの確認)
+-- ①ユーザー登録を実施orログイン
+-- ②調理可能な料理のレシピ一覧が表示される
+-- ③調理したいレシピをクリック
+-- ④調理に必要となる食材が表示される
 
-* Database creation
+## 利用方法(冷蔵庫にある食材の管理)
+-- ①ユーザー登録を実施orログイン
+-- ②右下の冷ボタンをクリック
+-- ③冷蔵庫内の食材一覧が表示される
+-- ④＋ボタンをクリックすると食材の入力フォームが追加される
+-- ⑤食材の追加・削除、個数、賞味（消費）期限の入力をする
+-- ⑥保存ボタンをクリックすると冷蔵庫の中身が確定する
 
-* Database initialization
+## 利用方法(レシピの登録)
+-- ①ユーザー登録を実施orログイン
+-- ②ヘッダー内のレシピ登録をクリック
+-- ③＋ボタンをクリックすると食材の入力フォームが追加される
+-- ④食材の追加・削除、個数の入力をする
+-- ⑤料理の画像を選択する（任意）
+-- ⑤保存ボタンをクリックするとレシピの内容が登録される
 
-* How to run the test suite
+## 目指した課題解決
+-- 主婦や、一人暮らしで自炊をしている人たちの、「今日は何をつくろうかな？」、「冷蔵庫には何があったかな？」といった考える時間や煩わしさを解決するため
 
-* Services (job queues, cache servers, search engines, etc.)
+## 要件
+-- ユーザー管理機能（ゲストユーザ有）
+-- レシピ一覧表示機能
+-- レシピ詳細表示機能
+-- レシピ編集機能
+-- レシピ削除機能
+-- レシピ登録機能
+-- 食材管理機能
+-- レスポンシブ対応（未実施）
+-- インフラにAWSを使用
+-- Dockerを使用した環境構築
+-- CircleCIでテスト・デプロイを自動化
 
-* Deployment instructions
+## 実装した機能についての説明
+-- 実装後に記載
 
-* ...
+## 実装予定
+-- レスポンシブ対応
+
+## データベース設計
+[![Image from Gyazo](https://i.gyazo.com/9a1487b35daee3859066deb9b57b7527.png)](https://gyazo.com/9a1487b35daee3859066deb9b57b7527)
+
+## 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/2f50937e9574a344aed93de32b74c22a.png)](https://gyazo.com/2f50937e9574a344aed93de32b74c22a)
+
+## ローカルでの動作方法
+-- 実装後に記載
+-- Ruby 2.6.5
+-- Ruby on Rails 6.0.0
+-- AWS,Docker,CircleCI
