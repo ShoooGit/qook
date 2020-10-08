@@ -71,7 +71,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints: "3b:7e:bf:37:7a:e7:09:4a:8c:70:87:00:e2:a5:0f:8f"
-      - run: ssh ${USER_NAME}@${HOST_NAME}
+      - run: ssh -o "StrictHostKeyChecking no" ${USER_NAME}@${HOST_NAME}
       - deploy:
           name: Capistrano deploy
           command:
