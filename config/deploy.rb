@@ -19,7 +19,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
+set :ssh_options, auth_methods: %w['publickey'],
                   keys: [ENV.fetch('PRODUCTION_SSH_KEY').to_s]
 
 # プロセス番号を記載したファイルの場所
