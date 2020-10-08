@@ -75,5 +75,5 @@ jobs:
           name: Capistrano deploy
           command:
             ssh -o "StrictHostKeyChecking no" ${USER_NAME}@${HOST_NAME}
-            cd ~/repo
+            cd /var/www/rails/qook
             bundle exec cap production deploy
