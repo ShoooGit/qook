@@ -20,7 +20,7 @@ set :rbenv_ruby, '2.6.5'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: %w['publickey'],
-                  keys: [ENV.fetch('PRODUCTION_SSH_KEY').to_s]
+                  keys: [ENV.fetch('PRODUCTION_SSH_KEY')]
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }

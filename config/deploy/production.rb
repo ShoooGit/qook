@@ -37,11 +37,11 @@
 #
 # Global options
 # --------------
- set :ssh_options, {
-   keys: [ENV.fetch('PRODUCTION_SSH_KEY').to_s],
-   forward_agent: true,
-   auth_methods: %w[publickey]
- }
+#  set :ssh_options, {
+#    keys: %w(/home/user_name/.ssh/id_rsa),
+#    forward_agent: false,
+#    auth_methods: %w(password)
+#  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
