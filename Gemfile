@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'ed25519'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
