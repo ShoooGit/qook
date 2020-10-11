@@ -47,7 +47,7 @@ jobs:
 
       # rspecの実行
       # run tests!
-      test:
+      - test:
         - run:
             name: run tests
             command: |
