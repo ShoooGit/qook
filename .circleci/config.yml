@@ -48,28 +48,31 @@ jobs:
   # rspecの実行
   # run tests!
   test:
-    - run:
-        name: run tests
-        command: |
-          mkdir /tmp/test-results
-          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-            circleci tests split --split-by=timings)"
+    steps:
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
 
-          # RspecJunitFormatterのインストールが必要
-          bundle exec rspec \
-            --format progress \
-            --format RspecJunitFormatter \
-            --out /tmp/test-results/rspec.xml \
-            --format progress \
-            $TEST_FILES
+            # RspecJunitFormatterのインストールが必要
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
 
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
+  deploy:
+    steps:
       - add_ssh_keys:
           fingerprints: "3b:7e:bf:37:7a:e7:09:4a:8c:70:87:00:e2:a5:0f:8f"
       - deploy:
