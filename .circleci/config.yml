@@ -36,6 +36,7 @@ jobs:
       - run: bundle exec rails db:create
       - run: bundle exec rails db:migrate
       # Run rspec in parallel
+      # 以下はorbのコマンド
       - ruby/rspec-test
       - ruby/rubocop-check
 
