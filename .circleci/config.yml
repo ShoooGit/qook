@@ -81,7 +81,7 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
-      - test:
+      - run tests:
           requires:
             - build
       - deploy:
