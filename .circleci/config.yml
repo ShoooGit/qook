@@ -47,27 +47,28 @@ jobs:
 
       # rspecの実行
       # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
+      test:
+        - run:
+            name: run tests
+            command: |
+              mkdir /tmp/test-results
+              TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+                circleci tests split --split-by=timings)"
 
 
-            # RspecJunitFormatterのインストールが必要
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+              # RspecJunitFormatterのインストールが必要
+              bundle exec rspec \
+                --format progress \
+                --format RspecJunitFormatter \
+                --out /tmp/test-results/rspec.xml \
+                --format progress \
+                $TEST_FILES
 
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+        - store_test_results:
+            path: /tmp/test-results
+        - store_artifacts:
+            path: /tmp/test-results
+            destination: test-results
 
       - add_ssh_keys:
           fingerprints: "3b:7e:bf:37:7a:e7:09:4a:8c:70:87:00:e2:a5:0f:8f"
@@ -81,12 +82,12 @@ workflows:
   build_accept_deploy:
     jobs:
       - build
-      - run tests:
+      - test:
           requires:
             - build
       - deploy:
           requires:
-            - run tests
+            - test
           filters:
             branches:
               only: master
