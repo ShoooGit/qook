@@ -75,3 +75,6 @@ gem 'aws-sdk-s3', require: false
 
 # エラーメッセージの日本語化対応
 gem 'rails-i18n'
+
+# ユーザー管理機能の実装
+gem 'devise'
