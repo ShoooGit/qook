@@ -1,7 +1,8 @@
 ja:
- activerecord:
-   attributes:
-     user:
-       nickname: ニックネーム
-     recipe:
-       name: レシピ名
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        email:    メールアドレス
+      recipe:
+        name: レシピ名
