@@ -54,6 +54,7 @@ jobs:
           name: Capistrano deploy
           command: bundle exec cap production deploy
 
+
 workflows:
   version: 2
   build_accept_deploy:
