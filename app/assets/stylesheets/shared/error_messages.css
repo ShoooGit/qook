@@ -1,0 +1,8 @@
+.error-alert {
+  display: flex;
+}
+
+.error-message {
+  list-style: none;
+  color:red;
+}

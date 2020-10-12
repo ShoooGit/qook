@@ -42,6 +42,7 @@ group :development, :test do
   gem 'ed25519'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rspec_junit_formatter'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -75,3 +76,6 @@ gem 'aws-sdk-s3', require: false
 
 # エラーメッセージの日本語化対応
 gem 'rails-i18n'
+
+# ユーザー管理機能の実装
+gem 'devise'
