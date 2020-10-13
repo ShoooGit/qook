@@ -1,0 +1,24 @@
+.refrigerator-btn {
+  width: 120px;
+  background: white;
+  text-align: center;
+  border-radius: 4%;
+  bottom: 32px;
+  right: 32px;
+  position: fixed;
+  padding: 15px;
+  border: 1px solid lightblue;
+}
+
+.refrigerator-btn-text {
+  color:black;
+  display: block;
+  font-size: 15px;
+  text-decoration: none;
+  margin: 2px 0;
+  font-style: bold;
+}
+
+.refrigerator-btn-icon {
+  width: 60%;
+}

@@ -1,3 +1,107 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
-<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %>
+<%= render "shared/header" %>
+<div class='main'>
+
+  <div class='recipe-contents'>
+    <h2 class='title'>おすすめレシピ</h2>
+  </div>
+
+  <!-- レシピ一覧 
+  <div class='recipe-contents'>
+    <ul class='recipe-lists'>
+      <% if @recipes %>
+        <% @recipes.each do |recipe| %>
+          <li class='list'>
+            <%= link_to recipe_path(recipe.id) do %>
+              <div class='recipe-img-content'>
+                <%= image_tag recipe.image, class: "recipe-img" if recipe.image.attached? %>
+              </div>
+              <div class='recipe-info'>
+                <h3 class='recipe-name'>
+                  <%= recipe.name %>
+                </h3>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+        <h3 class='recipe-name'>
+          レシピが登録されていません<br>
+          <%= link_to 'レシピを登録する', '#' %>
+        </h3>
+      <% end %>
+    </ul>
+  </div>
+  -->
+
+  <div class='recipe-contents'>
+    <ul class='recipe-lists'>
+
+      <li class='list'>
+        <%= link_to '#' do %>
+          <div class='recipe-img-content'>
+            <%= image_tag("カレーライス.jpg", class:"recipe-img") %>
+          </div>
+        <% end %>
+        <div class='recipe'>
+            <h3 class='recipe-name'>カレーライス</h3>
+            <div class='recipe-info'>
+              <h3 class='recipe-name'>1000kcal</h3>
+              <h3 class='recipe-name'>所要時間：30分</h3>
+            </div>
+        </div>
+      </li>
+
+      <li class='list'>
+        <%= link_to '#' do %>
+          <div class='recipe-img-content'>
+            <%= image_tag("オムレツ.jpg", class:"recipe-img") %>
+          </div>
+        <% end %>
+        <div class='recipe'>
+            <h3 class='recipe-name'>オムレツ</h3>
+            <div class='recipe-info'>
+              <h3 class='recipe-name'>500kcal</h3>
+              <h3 class='recipe-name'>所要時間：10分</h3>
+            </div>
+        </div>
+      </li>
+      <li class='list'>
+        <%= link_to '#' do %>
+          <div class='recipe-img-content'>
+            <%= image_tag("角煮丼.jpg", class:"recipe-img") %>
+          </div>
+        <% end %>
+        <div class='recipe'>
+            <h3 class='recipe-name'>角煮丼</h3>
+            <div class='recipe-info'>
+              <h3 class='recipe-name'>1500kcal</h3>
+              <h3 class='recipe-name'>所要時間：60分</h3>
+            </div>
+        </div>
+      </li>
+      <li class='list'>
+        <%= link_to '#' do %>
+          <div class='recipe-img-content'>
+            <%= image_tag("卵焼き.jpg", class:"recipe-img") %>
+          </div>
+        <% end %>
+        <div class='recipe'>
+            <h3 class='recipe-name'>卵焼き</h3>
+            <div class='recipe-info'>
+              <h3 class='recipe-name'>200kcal</h3>
+              <h3 class='recipe-name'>所要時間：10分</h3>
+            </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+<!-- 冷蔵庫ボタン -->
+<a href="#">
+  <div class='refrigerator-btn'>
+    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
+    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
+  </div>
+</a>
