@@ -25,3 +25,8 @@
   margin: 0 auto;
   display: flex;
 }
+
+.add-user{
+  text-align: center;
+  margin-top: 20px;
+}

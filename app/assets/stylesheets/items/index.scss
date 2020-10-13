@@ -1,0 +1,80 @@
+a {
+  text-decoration: none;
+}
+
+.main {
+  box-sizing: border-box;
+}
+
+/* 商品一覧 */
+
+.recipe-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3vh 0;
+}
+
+.recipe-contents>.title {
+  font-size: 5vh;
+  line-height: 1.4;
+  font-weight: bold;
+  color: #CC6633;
+}
+
+.recipe-lists {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recipe-lists>.list {
+  width: 40vw;
+  margin: 1vw 3vw;
+  background-color: #EEEEEE;
+  display: flex;
+}
+
+.recipe-img-content {
+  width: 27vw;
+  height: 100%;
+}
+
+.recipe-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px ;
+}
+
+.recipe {
+  background-color: white;
+  color: black;
+  padding: 1vw;
+  width: 50%;
+  border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipe-name {
+  font-size: 2.5vh;
+  text-align: center;
+  padding: 1vh 0;
+  margin: 2vh 0;
+  color: black;
+  border-bottom: 1px solid #CC6633;
+}
+
+.recipe-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipe>.recipe-name{
+  font-weight: bold;
+  border-top: 1px solid #CC6633;
+  color: #CC6633;
+}
