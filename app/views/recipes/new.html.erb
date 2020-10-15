@@ -2,33 +2,20 @@
 <div class='main'>
   <div class="recipes-add-contents">
     <div class="recipes-add-main">
-      <h2 class="recipes-add-title">レシピ情報の登録</h2>
+      <div class='title-box'>
+        <h2 class="title">レシピ情報の登録</h2>
+      </div>
       <%= form_with model: @recipe, url: '/recipes', method: :post, local: true do |f| %>
 
         <div class='container'>
           <div class='form'>
-            <div class='side-by-side'>
               <!-- レシピ名入力 -->
               <div class='input-form name'>
                 <div class="weight-bold-text">
                   レシピ名
                   <span class="indispensable">必須</span>
                 </div>
-                <%= f.text_area :name, class:"recipes-text", id:"recipe-name", placeholder:"レシピ名を入力してください", maxlength:"20" %>
-              </div>
-              <!-- レシピ画像選択 -->
-              <div class="input-form img">
-                <div class="weight-bold-text">
-                  料理の写真
-                  <span class="indispensable">必須</span>
-                </div>
-                <%= f.file_field :image, id:"recipe-image", class:"image" %>
-              </div>
-            </div>
-            <!-- カロリーと調理時間を横並びにする -->
-            <div class='side-by-side'>
-              <!-- レシピ画像選択 -->
-              <div class="input-form blank">
+                <%= f.text_area :name, class:"recipes-text", id:"recipe-name", maxlength:"20" %>
               </div>
               <!-- カロリー -->
               <div class='input-form calorie'>
@@ -50,8 +37,19 @@
                   <div class='unit'>分</div>
                 </div>
               </div>
-            </div>
+              <!-- レシピ画像選択 -->
+              <div class="input-form img">
+                <div class="weight-bold-text">
+                  料理の写真
+                  <span class="indispensable">必須</span>
+                </div>
+                <%= f.file_field :image, id:"recipe-image", class:"image" %>
+              </div>
           </div>
+        </div>
+
+        <div class='title-box'>
+          <h2 class="title">食材の入力</h2>
         </div>
 
         <div class="container foodstuff-container">
@@ -64,7 +62,7 @@
               <%= render "shared/foodstuff", f: f %>
             </div>
             <div class='add-form'>
-              <div class='form-btn'><p>食材追加</p></div>
+              <div class='form-btn vertical'><p>追加</p></div>
             </div>
           </div>
         </div>
