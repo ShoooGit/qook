@@ -82,3 +82,6 @@ gem 'devise'
 
 # 動的フォームの実装
 gem 'cocoon'
+
+# ActiveHash
+gem 'active_hash'
