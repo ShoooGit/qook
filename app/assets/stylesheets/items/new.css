@@ -151,7 +151,11 @@
 }
 
 .calorie, .time{
-  width: 40%;
+  width: 30%;
+}
+
+.calorie>.num-field,.time>.num-field{
+  width: 70%;
 }
 
 .calorie>.side-by-side, .time>.side-by-side{
@@ -185,3 +189,7 @@
 }
 
 /*----------------- 食材 -----------------*/
+
+.nested-fields{
+  border-bottom: 1px solid #CC6633;
+}

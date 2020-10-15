@@ -5,4 +5,5 @@
     <div class='unit', id:'unit'>個</div>
     <%= link_to_remove_association "削除", f, class:'form-btn vertical' %>
   </div>
+  <%= render 'shared/error_messages', model: f.object.errors.full_messages %>
 </div>
