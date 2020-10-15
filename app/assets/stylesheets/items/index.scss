@@ -64,7 +64,6 @@ a {
   padding: 1vh 0;
   margin: 2vh 0;
   color: black;
-  border-bottom: 1px solid #CC6633;
 }
 
 .recipe-info{
@@ -74,7 +73,11 @@ a {
 }
 
 .recipe>.recipe-name{
+  font-size: 3vh;
   font-weight: bold;
-  border-top: 1px solid #CC6633;
   color: #CC6633;
+}
+
+.recipe-info>.recipe-name{
+  border-bottom: 1px solid #CC6633;
 }
