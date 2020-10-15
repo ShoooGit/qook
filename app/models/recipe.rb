@@ -5,8 +5,10 @@ class Recipe < ApplicationRecord
   has_one_attached :image
 
   # バリデーションの設定
+  # 空白でないこと
   validates :name, presence: true
   validates :image, presence: true
+  # 0 ~ 9999
   with_options numericality: {
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 9_999
