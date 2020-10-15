@@ -8,11 +8,11 @@ class Recipe < ApplicationRecord
   # バリデーションの設定
   # 空白でないこと
   validates :name, presence: true
-  validates :image, presence: { message: 'を選択してください'}
+  validates :image, presence: { message: 'を選択してください' }
   # 0 ~ 9999
   with_options numericality: {
     greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 9_999,
+    less_than_or_equal_to: 9_999
   } do
     validates :calorie, allow_blank: true
     validates :time, allow_blank: true
