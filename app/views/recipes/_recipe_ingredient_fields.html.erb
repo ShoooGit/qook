@@ -1,6 +1,6 @@
 <div class="nested-fields">
   <div class='side-by-side foodstuff'>
-    <%= f.collection_select(:ingredient_id, {}, :id, :name, {}, {class:"select-box", id:"ingredient"}) %>
+    <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name, {}, {class:"select-box", id:"ingredient"}) %>
     <%= f.number_field :quantity, class:"num-field", id:"quantity" %>
     <div class='unit', id:'unit'>個</div>
     <%= link_to_remove_association "削除", f, class:'form-btn vertical' %>
