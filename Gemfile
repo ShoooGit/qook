@@ -79,3 +79,6 @@ gem 'rails-i18n'
 
 # ユーザー管理機能の実装
 gem 'devise'
+
+# 動的フォームの実装
+gem 'cocoon'
