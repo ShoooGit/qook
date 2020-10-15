@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # アソシエーションの設定
-  # has_many :recipes
+  has_many :recipes
   # has_many :refrigerators
 
   # バリデーションの設定
