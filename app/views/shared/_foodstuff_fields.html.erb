@@ -1,0 +1,8 @@
+<div class='side-by-side foodstuff'>
+  <%= f.collection_select(:category_id, {}, :id, :name, {}, {class:"select-box", id:"recipe-category"}) %>
+  <%= f.number_field :food_num, class:"num-field", id:"food-num" %>
+  <div class='unit', id:'unit'>個</div>
+  <div class='form-btn vertical'>
+    <%= link_to_remove_association "削除", f %>
+  </div>
+</div>
