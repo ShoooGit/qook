@@ -59,13 +59,11 @@
                 食材
                 <span class="indispensable">必須</span>
               </div>
-              <%= f.fields_for :recipe_ingredient do |t| %>
-                <%= render "shared/foodstuff_fields", f: t %>
+              <%= f.fields_for :recipe_ingredients do |t| %>
+                <%= render "recipes/recipe_ingredient_fields", f: t %>
               <% end %>
-            </div>
-            <div class='add-form'>
-              <div class='form-btn vertical'>
-                <%= link_to_add_association "追加", f, :recipe_ingredient %>
+              <div class='add'>
+                <%= link_to_add_association "追加", f, :recipe_ingredients, class:'form-btn vertical' %>
               </div>
             </div>
           </div>

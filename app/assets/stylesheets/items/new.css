@@ -179,12 +179,7 @@
   margin-left: 1vw;
 }
 
-.add-form{
-  width: 100%;
-  padding: 1vh 1vw;
-}
-
-.add-form>.form-btn{
+.add>.form-btn{
   float: right;
   background: blue;
 }

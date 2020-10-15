@@ -2,7 +2,7 @@ class Recipe < ApplicationRecord
   # アソシエーションの設定
   belongs_to :user
   has_many :recipe_ingredients, dependent: :destroy
-  accepts_nested_attributes_for :recipe_ingredients, allow: true
+  accepts_nested_attributes_for :recipe_ingredients
   has_one_attached :image
 
   # バリデーションの設定
