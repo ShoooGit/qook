@@ -5,4 +5,12 @@ ja:
         nickname: ニックネーム
         email:    メールアドレス
       recipe:
-        name: レシピ名
+        user:    ユーザー
+        name:    レシピ名
+        image:   料理の写真
+        calorie: カロリー
+        time:    調理時間
+      recipe_ingredient:
+        recipe:         レシピ名
+        ingredient_id:  食材
+        quantity:       食材の単位

@@ -37,6 +37,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_hash (3.1.0)
+      activesupport (>= 5.0.0)
     activejob (6.0.3.3)
       activesupport (= 6.0.3.3)
       globalid (>= 0.3.6)
@@ -108,6 +110,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
+    cocoon (1.2.15)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     devise (4.7.3)
@@ -307,6 +310,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_hash
   aws-sdk-s3
   bcrypt_pbkdf
   bootsnap (>= 1.4.2)
@@ -317,6 +321,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
+  cocoon
   devise
   ed25519
   factory_bot_rails
