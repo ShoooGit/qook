@@ -1,29 +1,21 @@
 const { event, Event } = require("jquery");
 
-const selectboxChange = () => {
-  target = document.getElementById("unit");
+const selectboxChange = (e) => {
+  // イベントを発生させたセレクトボックスの親要素を基準に、子要素（単位）を取得
+  target = e.target.parentNode.children[2];
 
-  selindex = document.getElementById("ingredient").selectedIndex;
-  console.log(selindex);
+  // イベントを発生させたセレクトボックスのidを取得
+  selindex = e.target.selectedIndex;
 
   switch (selindex) {
-    case 0:
+    case 0: 
       target.innerHTML = "個";
       break;
     case 1:
-      target.innerHTML = "要素1が選択されています。<br/>";
+      target.innerHTML = "g";
       break;
     case 2:
       target.innerHTML = "要素2が選択されています。<br/>";
-      break;
-    case 3:
-      target.innerHTML = "要素3が選択されています。<br/>";
-      break;
-    case 4:
-      target.innerHTML = "要素4が選択されています。<br/>";
-      break;
-    case 5:
-      target.innerHTML = "要素5が選択されています。<br/>";
       break;
   };
 };
