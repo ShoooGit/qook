@@ -18,6 +18,18 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    if @recipe.update(recipe_params)
+      # 以下はshow画面に行くようにあとから修正する
+      redirect_to root_path
+    else
+      render action: :edit
+    end
+  end
   private
 
   def recipe_params
