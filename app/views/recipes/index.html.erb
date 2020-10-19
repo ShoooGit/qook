@@ -13,14 +13,14 @@
           <li class='list'>
             <%= link_to '#' do %>
               <div class='recipe-img-content'>
-                <%= image_tag(@recipe.image, class:"recipe-img") %>
+                <%= image_tag(recipe.image, class:"recipe-img") %>
               </div>
             <% end %>
             <div class='recipe'>
-                <h3 class='recipe-name'><%= @recipe.name %></h3>
+                <h3 class='recipe-name'><%= recipe.name %></h3>
                 <div class='recipe-info'>
-                  <h3 class='recipe-name'><%= @recipe.calorie %>kcal</h3>
-                  <h3 class='recipe-name'>所要時間：<%= @recipe.time %>分</h3>
+                  <h3 class='recipe-name'><%= recipe.calorie %>kcal</h3>
+                  <h3 class='recipe-name'>所要時間：<%= recipe.time %>分</h3>
                 </div>
             </div>
           </li>

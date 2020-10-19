@@ -6,8 +6,3 @@
   list-style: none;
   color:red;
 }
-
-/* Railsの機能によって挿入されるdivタグのクラスを無効化 */
-.field_with_errors {
-  display: contents;
-}
