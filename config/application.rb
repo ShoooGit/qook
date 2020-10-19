@@ -14,6 +14,9 @@ module Qook
 
     # 日本語の言語設定
     config.i18n.default_locale = :ja
+
+    # レイアウト崩れ防止
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new]
   def index
+    @recipes = Recipe.includes(:user)
   end
 
   def new

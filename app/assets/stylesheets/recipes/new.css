@@ -77,7 +77,7 @@
 
 /* セレクトボックス */
 .select-box {
-  width: 50%;
+  width: 35%;
   background-color: #f5f5f5;
   padding-left: 10px;
   margin: 2vh 0;
@@ -119,10 +119,10 @@
 
 /* 単位 */
 .unit{
-  font-size: 20px;
-  width: 15%;
-  font-size: 20px;
+  font-size: 1vw;
+  width: 20%;
   font-weight: bold;
+  line-height: 3.5vh;
 }
 
 /* 縦並び */
