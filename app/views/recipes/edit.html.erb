@@ -1,0 +1,107 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <div class="recipes-add-contents">
+    <div class="recipes-add-main">
+      <div class='title-box'>
+        <h2 class="title">レシピ情報の登録</h2>
+      </div>
+      <%= form_with model: @recipe, method: :post, local: true do |f| %>
+
+        <div class='container'>
+          <div class='form'>
+
+              <!-- レシピ名入力 -->
+              <div class='input-form name'>
+                <div class="weight-bold-text">
+                  レシピ名
+                  <span class="indispensable">必須</span>
+                </div>
+                <% if f.object.errors.include?(:name) %>
+                  <%= render 'shared/error_messages', model: f.object.errors.full_messages_for(:name) %>
+                <% end %>
+                <%= f.text_area :name, class:"recipes-text", id:"recipe-name", maxlength:"20" %>
+              </div>
+
+              <!-- カロリー -->
+              <div class='input-form'>
+                <div class="weight-bold-text">
+                  カロリー
+                </div>
+                <% if f.object.errors.include?(:calorie) %>
+                  <%= render 'shared/error_messages', model: f.object.errors.full_messages_for(:calorie) %>
+                <% end %>
+                <div class='side-by-side calorie'>
+                  <%= f.number_field :calorie, class:"num-field", id:"calorie" %>
+                  <div class='unit'>kcal</div>
+                </div>
+              </div>
+
+              <!-- 調理時間 -->
+              <div class='input-form'>
+                <div class="weight-bold-text">
+                  調理時間
+                </div>
+                <% if f.object.errors.include?(:time) %>
+                  <%= render 'shared/error_messages', model: f.object.errors.full_messages_for(:time) %>
+                <% end %>
+                <div class='side-by-side time'>
+                  <%= f.number_field :time, class:"num-field", id:"time" %>
+                  <div class='unit'>分</div>
+                </div>
+              </div>
+
+              <!-- レシピ画像選択 -->
+              <div class="input-form img">
+                <div class="weight-bold-text">
+                  料理の写真
+                  <span class="indispensable">必須</span>
+                </div>
+                <% if f.object.errors.include?(:image) %>
+                  <%= render 'shared/error_messages', model: f.object.errors.full_messages_for(:image) %>
+                <% end %>
+                <%= f.file_field :image, id:"recipe-image", class:"image" %>
+              </div>
+          </div>
+        </div>
+
+        <div class='title-box'>
+          <h2 class="title">食材の入力</h2>
+        </div>
+
+        <div class="container foodstuff-container">
+          <div class="form vertical">
+            <div class='input-form'>
+              <div class="weight-bold-text">
+                食材
+                <span class="indispensable">必須</span>
+              </div>
+              <!-- 食材入力フィールド -->
+              <%= f.fields_for :recipe_ingredients do |t| %>
+                <%= render "recipes/recipe_ingredient_fields", f: t %>
+              <% end %>
+
+              <!-- 食材追加ボタン -->
+              <div class='add'>
+                <%= link_to_add_association "追加", f, :recipe_ingredients, class:'form-btn vertical' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-btn">
+          <%= f.submit "登録" ,class:"submit-color-btn" %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+<!-- 冷蔵庫ボタン -->
+<a href="#">
+  <div class='refrigerator-btn'>
+    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
+    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
+  </div>
+</a>
