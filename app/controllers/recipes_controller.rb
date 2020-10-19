@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit, :update]
   before_action :set_recipe, only: [:edit, :update]
-  
+
   def index
     @recipes = Recipe.includes(:user)
   end
