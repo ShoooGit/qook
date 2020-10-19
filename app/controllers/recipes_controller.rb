@@ -28,8 +28,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      # 以下はshow画面に行くようにあとから修正する
-      redirect_to root_path
+      redirect_to recipe_path(@recipe.id)
     else
       render action: :edit
     end
