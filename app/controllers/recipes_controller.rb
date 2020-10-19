@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit, :update]
-  before_action :set_recipe, only: [:edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
     @recipes = Recipe.includes(:user)
@@ -9,6 +9,9 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe_ingredients = @recipe.recipe_ingredients.build
+  end
+
+  def show
   end
 
   def create
