@@ -1,0 +1,63 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <div class="recipes-add-contents">
+    <div class="recipes-add-main">
+      <div class='title-box'>
+        <h2 class="title">レシピ情報</h2>
+      </div>
+
+      <div class='container'>
+        <div class='form vertical'>
+          <div class='list'>
+            <div class='recipe-img-content'>
+              <%= image_tag(@recipe.image, class:"recipe-img") %>
+            </div>
+            <div class='recipe'>
+              <h3 class='recipe-name'><%= @recipe.name %></h3>
+              <div class='recipe-info'>
+                <h3 class='recipe-name'><%= @recipe.calorie %>kcal</h3>
+                <h3 class='recipe-name'>所要時間：<%= @recipe.time %>分</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='title-box'>
+        <h2 class="title">食材情報</h2>
+      </div>
+
+      <div class="container foodstuff-container">
+        <div class="form vertical">
+          <% @recipe.recipe_ingredients.each do |ingredient| %>
+            <div class='side-by-side foodstuff show'>
+              <div class='foodstuff-name'>
+                <div><%= ingredient.ingredient.name %></div>
+              </div>
+              <div class='side-by-side show'>
+                <div class='quantity'>
+                  <div class='right'><%= ingredient.quantity %></div>
+                </div>
+                <div class='unit', id='unit'>個</div>
+              </div>
+            </div>
+          <% end %>
+        
+        </div>
+      </div>
+
+      <div class="submit-btn">
+      </div>
+
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+<!-- 冷蔵庫ボタン -->
+<a href="#">
+  <div class='refrigerator-btn'>
+    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
+    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
+  </div>
+</a>
