@@ -32,3 +32,22 @@
   width: 50%;
   justify-content: center;
 }
+
+.btn-form{
+  display: flex;
+  justify-content: center;
+}
+
+.edit-btn,.del-btn,.exec-btn {
+  width: 20%;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius:6px;
+  margin: 2vh 2vw;
+  border: 1px solid blue;
+  text-align: center;
+  background: #FF8856;
+  border: 1px solid #fff;
+  color: #fff;
+}

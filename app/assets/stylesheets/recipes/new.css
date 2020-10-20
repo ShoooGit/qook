@@ -19,6 +19,9 @@
   width: 60vw;
   min-width: 450px;
   padding: 5vh 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title-box{

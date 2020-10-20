@@ -42,11 +42,17 @@
               </div>
             </div>
           <% end %>
-        
         </div>
       </div>
+      
+      <div class='btn-form'>
+          <%= link_to '編集', edit_recipe_path(@recipe.id), method: :get, class:'edit-btn' %>
+          <%= link_to '削除', "/recipes/#{@recipe.id}", method: :delete, class:'del-btn' %>
+      </div>
 
-      <div class="submit-btn">
+      <div class='btn-form vertical'>
+          <div class="exec-btn">調理実行</div>
+          <div>調理を実行すると食材が冷蔵庫から消費されます</div>
       </div>
 
     </div>
