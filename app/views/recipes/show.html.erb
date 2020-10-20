@@ -1,0 +1,71 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <div class="recipes-add-contents">
+    <div class="recipes-add-main">
+      <div class='title-box'>
+        <h2 class="title">レシピ情報</h2>
+      </div>
+
+      <div class='container'>
+        <div class='form vertical'>
+          <div class='list'>
+            <div class='recipe-img-content'>
+              <%= image_tag(@recipe.image, class:"recipe-img") %>
+            </div>
+            <div class='recipe'>
+              <h3 class='recipe-name'><%= @recipe.name %></h3>
+              <div class='recipe-info'>
+                <h3 class='recipe-name'><%= @recipe.calorie %>kcal</h3>
+                <h3 class='recipe-name'>所要時間：<%= @recipe.time %>分</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='title-box'>
+        <h2 class="title">食材情報</h2>
+      </div>
+
+      <div class="container foodstuff-container">
+        <div class="show-form vertical">
+          <% @recipe.recipe_ingredients.each do |r_ingredient| %>
+            <div class='side-by-side foodstuff'>
+              <div class='foodstuff-name'>
+                <%= r_ingredient.ingredient.name %>
+              </div>
+              <div style="width:50%;">
+                <div class='side-by-side'>
+                  <div class='quantity'>
+                    <div class='right'><%= r_ingredient.quantity %></div>
+                  </div>
+                  <div class='show-unit', id='unit'><%= r_ingredient.ingredient.unit %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class='btn-form'>
+          <%= link_to '編集', edit_recipe_path(@recipe.id), method: :get, class:'edit-btn' %>
+          <%= link_to '削除', "/recipes/#{@recipe.id}", method: :delete, class:'del-btn' %>
+      </div>
+
+      <div class='btn-form vertical'>
+          <div class="exec-btn">調理実行</div>
+          <div>調理を実行すると食材が冷蔵庫から消費されます</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+<!-- 冷蔵庫ボタン -->
+<a href="#">
+  <div class='refrigerator-btn'>
+    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
+    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
+  </div>
+</a>

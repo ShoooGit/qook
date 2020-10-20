@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :edit, :update]
-  before_action :set_recipe, only: [:edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
     @recipes = Recipe.includes(:user)
@@ -9,6 +9,9 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe_ingredients = @recipe.recipe_ingredients.build
+  end
+
+  def show
   end
 
   def create
@@ -25,10 +28,18 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      # 以下はshow画面に行くようにあとから修正する
-      redirect_to root_path
+      redirect_to recipe_path(@recipe.id)
     else
       render action: :edit
+    end
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    if recipe.destroy
+      redirect_to root_path
+    else
+      render action: :show
     end
   end
 
