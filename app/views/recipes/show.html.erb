@@ -28,17 +28,19 @@
       </div>
 
       <div class="container foodstuff-container">
-        <div class="form vertical">
-          <% @recipe.recipe_ingredients.each do |ingredient| %>
-            <div class='side-by-side foodstuff show'>
+        <div class="show-form vertical">
+          <% @recipe.recipe_ingredients.each do |r_ingredient| %>
+            <div class='side-by-side foodstuff'>
               <div class='foodstuff-name'>
-                <div><%= ingredient.ingredient.name %></div>
+                <%= r_ingredient.ingredient.name %>
               </div>
-              <div class='side-by-side show'>
-                <div class='quantity'>
-                  <div class='right'><%= ingredient.quantity %></div>
+              <div style="width:50%;">
+                <div class='side-by-side'>
+                  <div class='quantity'>
+                    <div class='right'><%= r_ingredient.quantity %></div>
+                  </div>
+                  <div class='show-unit', id='unit'><%= r_ingredient.ingredient.unit %></div>
                 </div>
-                <div class='unit', id='unit'>個</div>
               </div>
             </div>
           <% end %>

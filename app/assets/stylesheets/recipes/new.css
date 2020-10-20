@@ -91,7 +91,7 @@
   width: 15%;
   padding-left: 1vw;
   border: 1px solid #ccc;
-  text-align: center;
+  text-align: right;
   margin-right: 1vw;
 }
 
@@ -125,7 +125,9 @@
   font-size: 1vw;
   width: 20%;
   font-weight: bold;
-  line-height: 3.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* 縦並び */
