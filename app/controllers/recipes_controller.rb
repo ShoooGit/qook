@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
@@ -54,4 +54,5 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end
+  
 end
