@@ -42,6 +42,7 @@ class RecipesController < ApplicationController
       render action: :show
     end
   end
+
   private
 
   def recipe_params
