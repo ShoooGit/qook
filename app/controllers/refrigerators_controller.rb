@@ -1,9 +1,22 @@
 class RefrigeratorsController < ApplicationController
-  def show
-    if Refrigerator.exists?(user_id: params[:id])
-      @refrigerator = Refrigerator.find(user_id: params[:id])
+  def new
+    @refrigerator = Refrigerator.new
+  end
+
+  def create
+    @refrigerator = Recipe.new(refrigerator_params)
+    if @refrigerator.save
+      redirect_to root_path
     else
-      @refrigerator = Refrigerator.new(user_id: current_user.id)
+      render action: :new
     end
+  end
+
+  private
+
+  def refrigerator_params
+    params.require(:refrigerator)
+          .permit(refrigerator_ingredients_attributes: [:id, :ingredient_id, :quantity, :_destroy])
+          .merge(user_id: current_user.id)
   end
 end
