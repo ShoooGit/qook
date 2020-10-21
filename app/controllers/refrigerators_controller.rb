@@ -4,7 +4,7 @@ class RefrigeratorsController < ApplicationController
   end
 
   def create
-    @refrigerator = Recipe.new(refrigerator_params)
+    @refrigerator = Refrigerator.new(refrigerator_params)
     if @refrigerator.save
       redirect_to root_path
     else
