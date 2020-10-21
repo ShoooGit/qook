@@ -53,7 +53,7 @@
       </div>
 
       <div class='btn-form vertical'>
-          <div class="exec-btn">調理実行</div>
+          <%= link_to '調理実行', execute_recipe_path(@recipe.id), method: :patch, class:'exec-btn' %>
           <div>調理を実行すると食材が冷蔵庫から消費されます</div>
       </div>
 

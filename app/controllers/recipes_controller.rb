@@ -47,31 +47,31 @@ class RecipesController < ApplicationController
   def execute
     # レシピに必要な食材を配列で取得
     @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
-    
     # ログインしているユーザーの冷蔵庫の食材を配列で取得
-    @refrigerator_ingredients = RefrigeratorIngredient.where(user_id: current_user.id)
+    @refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
 
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
     @recipe_ingredients.each do |recipe_ingredient|
       @refrigerator_ingredients.each_with_index do |refrigerator_ingredient,i|
+
         # レシピに必要な食材と冷蔵庫の食材の突き合わせ
         if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
+          
           # 冷蔵庫の食材をレシピに必要な食材数分減らす
-          @refrigerator_ingredients[i].quantity -= recipe_ingredient.quantity
-          # 食材数がゼロになったレコードを削除
-          if @refrigerator_ingredients[i].quantity == 0
-            @refrigerator_ingredients.delete_at(i + 1)
+          quantity = @refrigerator_ingredients[i].quantity -= recipe_ingredient.quantity
+
+          # 冷蔵庫の食材数に応じて処理を分岐
+          if quantity == 0
+            # 食材がなくなったらレコードを削除
+            @refrigerator_ingredients[i].delete
+          else
+            # 減らした食材を更新
+            @refrigerator_ingredients[i].update(quantity: quantity)
           end
         end
       end
     end
-
-    # 食材消費後の冷蔵庫を保存
-    if @refrigerator_ingredients.save
-      redirect_to root_path
-    else
-      render action: :show
-    end
+    redirect_to root_path
   end
 
   private
