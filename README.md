@@ -60,7 +60,7 @@
 レスポンシブ対応
 
 ## データベース設計
-[![Image from Gyazo](https://i.gyazo.com/9a1487b35daee3859066deb9b57b7527.png)](https://gyazo.com/9a1487b35daee3859066deb9b57b7527)
+[![Image from Gyazo](https://i.gyazo.com/b5ea3e3201c8b9e44e6c82c4c749bbcc.png)](https://gyazo.com/b5ea3e3201c8b9e44e6c82c4c749bbcc)
 
 ## 画面遷移図
 [![Image from Gyazo](https://i.gyazo.com/2f50937e9574a344aed93de32b74c22a.png)](https://gyazo.com/2f50937e9574a344aed93de32b74c22a)
