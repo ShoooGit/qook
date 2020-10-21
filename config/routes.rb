@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'recipes#index'
-  devise_for :users do
-    resources :refrigerators, only[:index]
-  end
+  devise_for :users
   resources :recipes
+  resources :refrigerators, only: [:show]
 end
