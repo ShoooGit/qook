@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :move_to_top, only: :edit
 
   def index
     @recipes = Recipe.includes(:user)
@@ -53,5 +54,10 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def move_to_top
+    # 別ユーザのレシピ編集画面にアクセスした場合、トップページにリダイレクト
+    redirect_to root_path if current_user.id != @recipe.user_id
   end
 end
