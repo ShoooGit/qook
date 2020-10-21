@@ -16,6 +16,5 @@ class RefrigeratorIngredient < ApplicationRecord
       greater_than_or_equal_to: 1,
       less_than_or_equal_to: 1_000
     }
-    validates :limit
   end
 end
