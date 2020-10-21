@@ -2,9 +2,6 @@
 <div class='main'>
   <div class="recipes-add-contents">
     <div class="recipes-add-main">
-      <div class='title-box'>
-        <h2 class="title">レシピ情報の登録</h2>
-      </div>
       <%= form_with model: @refrigerator, method: :post, local: true do |f| %>
 
         <div class='title-box'>
@@ -18,6 +15,7 @@
                 食材
                 <span class="indispensable">必須</span>
               </div>
+
               <!-- 食材入力フィールド -->
               <%= f.fields_for :refrigerator_ingredients do |t| %>
                 <%= render "refrigerators/refrigerator_ingredient_fields", f: t %>
@@ -27,16 +25,16 @@
               <div class='add'>
                 <%= link_to_add_association "追加", f, :refrigerator_ingredients, class:'form-btn vertical' %>
               </div>
+
             </div>
           </div>
         </div>
 
         <div class="submit-btn">
           <%= f.submit "確定" ,class:"submit-color-btn" %>
-        </div>
-
-      </div>
-    <% end %>
+        </div>  
+      <% end %>
+    </div>
   </div>
 </div>
 <%= render "shared/footer" %>
