@@ -1,0 +1,2 @@
+class RefrigeratorIngredient < ApplicationRecord
+end
