@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :move_to_top, only: :edit
 
   def index
-    @recipes = Recipe.includes(:user)
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id)
   end
 
   def new
