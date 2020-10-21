@@ -1,2 +1,42 @@
-<h1>Refrigerators#index</h1>
-<p>Find me in app/views/refrigerators/index.html.erb</p>
+<%= render "shared/header" %>
+<div class='main'>
+  <div class="recipes-add-contents">
+    <div class="recipes-add-main">
+      <div class='title-box'>
+        <h2 class="title">レシピ情報の登録</h2>
+      </div>
+      <%= form_with model: @refrigerator, method: :post, local: true do |f| %>
+
+        <div class='title-box'>
+          <h2 class="title">食材の入力</h2>
+        </div>
+
+        <div class="container foodstuff-container">
+          <div class="form vertical">
+            <div class='input-form'>
+              <div class="weight-bold-text">
+                食材
+                <span class="indispensable">必須</span>
+              </div>
+              <!-- 食材入力フィールド -->
+              <%= f.fields_for :refrigerator_ingredients do |t| %>
+                <%= render "refrigerators/refrigerator_ingredient_fields", f: t %>
+              <% end %>
+
+              <!-- 食材追加ボタン -->
+              <div class='add'>
+                <%= link_to_add_association "追加", f, :refrigerator_ingredients, class:'form-btn vertical' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-btn">
+          <%= f.submit "確定" ,class:"submit-color-btn" %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer" %>
