@@ -75,8 +75,7 @@ class RecipesController < ApplicationController
         end
       end
     end
-    flash.now[:notice] = '調理を実行し、冷蔵庫内の食材を消費しました'
-    redirect_to root_path
+    redirect_to root_path, notice: '調理を実行し、冷蔵庫内の食材を消費しました'
   end
 
   private
@@ -107,7 +106,7 @@ class RecipesController < ApplicationController
   end
 
   def check_exec
-    return @flg = FALSE unless @refrigerator_ingredients
+    return @flg = FALSE if @refrigerator_ingredients.blank?
 
     @flg = TRUE
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
