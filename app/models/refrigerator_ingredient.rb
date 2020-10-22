@@ -1,8 +1,8 @@
-class RecipeIngredient < ApplicationRecord
+class RefrigeratorIngredient < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   # アソシエーションの設定
-  belongs_to :recipe
+  belongs_to :refrigerator
   belongs_to_active_hash :ingredient
 
   # バリデーションの設定

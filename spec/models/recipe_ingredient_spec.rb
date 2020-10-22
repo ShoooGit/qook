@@ -24,6 +24,11 @@ RSpec.describe RecipeIngredient, type: :model do
       @recipe_ingredient.valid?
       expect(@recipe_ingredient.errors.full_messages).to include('食材を入力してください')
     end
+    it 'ingredient_idが重複すると保存できないこと' do
+      FactoryBot.create(:recipe_ingredient)
+      @recipe_ingredient.valid?
+      expect(@recipe_ingredient.errors.full_messages).to include('食材はすでに存在します')
+    end
     it 'quantityが空だと登録できないこと' do
       @recipe_ingredient.quantity = nil
       @recipe_ingredient.valid?

@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :recipe_ingredient do
+  factory :refrigerator_ingredient do
     ingredient_id     { '629' }
     quantity          { '1' }
-    association :recipe
+    association :refrigerator
   end
 end

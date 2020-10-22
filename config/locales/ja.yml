@@ -14,3 +14,9 @@ ja:
         recipe:         レシピ名
         ingredient_id:  食材
         quantity:       食材の単位
+      refrigerator:
+        user:    ユーザー
+      refrigerator_ingredient:
+        refrigerator:         冷蔵庫
+        ingredient_id:        食材
+        quantity:             食材の単位

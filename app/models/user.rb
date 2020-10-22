@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # アソシエーションの設定
   has_many :recipes
-  # has_many :refrigerators
+  has_one  :refrigerator
 
   # バリデーションの設定
   validates :nickname, presence: true

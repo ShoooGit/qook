@@ -53,8 +53,13 @@
       </div>
 
       <div class='btn-form vertical'>
-          <div class="exec-btn">調理実行</div>
-          <div>調理を実行すると食材が冷蔵庫から消費されます</div>
+        <% if @flg %>
+          <%= link_to '調理実行', execute_recipe_path(@recipe.id), method: :patch, class:'exec-btn' %>
+        <% else %>
+          <div class='dummy-btn'>調理実行</div>
+          <div style='color: red;'>調理に必要な食材が足りません</div><br>
+        <% end %>
+        <div>調理を実行すると食材が冷蔵庫から消費されます</div>
       </div>
 
     </div>
@@ -63,9 +68,4 @@
 <%= render "shared/footer" %>
 
 <!-- 冷蔵庫ボタン -->
-<a href="#">
-  <div class='refrigerator-btn'>
-    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
-    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
-  </div>
-</a>
+<%= render "shared/refrigerator" %>

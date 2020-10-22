@@ -5,6 +5,10 @@
     <h2 class='title'>おすすめレシピ</h2>
   </div>
 
+  <div class='flash-message'>
+    <%= flash[:notice] %>
+  </div>
+
   <!-- レシピ一覧の表示 -->
   <div class='recipe-contents'>
     <ul class='recipe-lists'>
@@ -32,9 +36,4 @@
 <%= render "shared/footer" %>
 
 <!-- 冷蔵庫ボタン -->
-<a href="#">
-  <div class='refrigerator-btn'>
-    <%= image_tag 'refrigerator.png' , size: '200x60' ,class: "refrigerator-btn-icon" %>
-    <span class='refrigerator-btn-text'>冷蔵庫へ</span>
-  </div>
-</a>
+<%= render "shared/refrigerator" %>
