@@ -35,16 +35,14 @@ class RecipesController < ApplicationController
   end
 
   def update
-    begin
-      if @recipe.update(recipe_params)
-        redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
-      else
-        render action: :edit
-      end
-    rescue ActiveRecord::RecordNotUnique
-      flash.now[:alert] = '重複する食材があります'
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
+    else
       render action: :edit
     end
+  rescue ActiveRecord::RecordNotUnique
+    flash.now[:alert] = '重複する食材があります'
+    render action: :edit
   end
 
   def destroy
@@ -101,18 +99,20 @@ class RecipesController < ApplicationController
   def set_ingredients
     # レシピに必要な食材を配列で取得
     @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
+    # ユーザーに紐付く冷蔵庫が存在しなければ、リターン
+    return unless Refrigerator.exists?(user_id: current_user.id)
+
     # ログインしているユーザーの冷蔵庫の食材を配列で取得
-    if Refrigerator.exists?(user_id: current_user.id)
-      @refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
-    end
+    @refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
   end
 
   def check_exec
     return @flg = FALSE unless @refrigerator_ingredients
+
     @flg = TRUE
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
     @recipe_ingredients.each do |recipe_ingredient|
-      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient, i|
+      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient, _i|
         # レシピに必要な食材と冷蔵庫の食材の突き合わせ
         return @flg = FALSE unless recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
 
@@ -121,5 +121,4 @@ class RecipesController < ApplicationController
       end
     end
   end
-
 end
