@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     member do
       patch 'execute'
     end
+    collection do
+      get 'search'
+    end
   end
   resources :refrigerators, only: [:new, :create, :edit, :update]
 end
