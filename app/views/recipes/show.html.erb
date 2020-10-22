@@ -53,8 +53,13 @@
       </div>
 
       <div class='btn-form vertical'>
+        <% if @flg %>
           <%= link_to '調理実行', execute_recipe_path(@recipe.id), method: :patch, class:'exec-btn' %>
-          <div>調理を実行すると食材が冷蔵庫から消費されます</div>
+        <% else %>
+          <div class='dummy-btn'>調理実行</div>
+          <div style='color: red;'>調理に必要な食材が足りません</div><br>
+        <% end %>
+        <div>調理を実行すると食材が冷蔵庫から消費されます</div>
       </div>
 
     </div>

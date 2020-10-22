@@ -7,9 +7,11 @@
         <div class='title-box'>
           <h2 class="title">食材の入力</h2>
         </div>
-
         <div class="container foodstuff-container">
           <div class="form vertical">
+            <div class='flash-message'>
+              <%= flash[:alert] %>
+            </div>
             <div class='input-form'>
               <div class="weight-bold-text">
                 食材

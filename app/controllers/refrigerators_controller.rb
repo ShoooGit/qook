@@ -11,9 +11,14 @@ class RefrigeratorsController < ApplicationController
 
   def create
     @refrigerator = Refrigerator.new(refrigerator_params)
-    if @refrigerator.save
-      redirect_to root_path
-    else
+    begin
+      if @refrigerator.save
+        redirect_to root_path, notice: "冷蔵庫を作成し、食材を追加しました"
+      else
+        render action: :new
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = '重複する食材があります'
       render action: :new
     end
   end
@@ -22,14 +27,16 @@ class RefrigeratorsController < ApplicationController
   end
 
   def update
-    if @refrigerator.update(refrigerator_params)
-      redirect_to root_path
-    else
+    begin
+      if @refrigerator.update(refrigerator_params)
+        redirect_to root_path, notice: "冷蔵庫の内容を更新しました"
+      else
+        render action: :edit
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = '重複する食材があります'
       render action: :edit
     end
-  rescue ActiveRecord::RecordNotUnique
-    puts '重複する食材があります'
-    render action: :edit
   end
 
   private
