@@ -78,6 +78,10 @@ class RecipesController < ApplicationController
     redirect_to root_path, notice: '調理を実行し、冷蔵庫内の食材を消費しました'
   end
 
+  def search
+    @recipes = RecipesService.search(params[:keyword])
+  end
+
   private
 
   def recipe_params
