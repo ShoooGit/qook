@@ -6,6 +6,7 @@ class RefrigeratorsController < ApplicationController
 
   def new
     @refrigerator = Refrigerator.new
+    @refrigerator_ingredients = @refrigerator.refrigerator_ingredients.build
   end
 
   def create
@@ -26,6 +27,9 @@ class RefrigeratorsController < ApplicationController
     else
       render action: :edit
     end
+  rescue ActiveRecord::RecordNotUnique
+    puts '重複する食材があります'
+    render action: :edit
   end
 
   private

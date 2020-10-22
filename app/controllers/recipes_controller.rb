@@ -52,22 +52,20 @@ class RecipesController < ApplicationController
 
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
     @recipe_ingredients.each do |recipe_ingredient|
-      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient,i|
-
+      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient, i|
         # レシピに必要な食材と冷蔵庫の食材の突き合わせ
-        if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
-          
-          # 冷蔵庫の食材をレシピに必要な食材数分減らす
-          quantity = @refrigerator_ingredients[i].quantity -= recipe_ingredient.quantity
+        next unless recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
 
-          # 冷蔵庫の食材数に応じて処理を分岐
-          if quantity == 0
-            # 食材がなくなったらレコードを削除
-            @refrigerator_ingredients[i].delete
-          else
-            # 減らした食材を更新
-            @refrigerator_ingredients[i].update(quantity: quantity)
-          end
+        # 冷蔵庫の食材をレシピに必要な食材数分減らす
+        quantity = @refrigerator_ingredients[i].quantity -= recipe_ingredient.quantity
+
+        # 冷蔵庫の食材数に応じて処理を分岐
+        if quantity.zero?
+          # 食材がなくなったらレコードを削除
+          render action: :show unless @refrigerator_ingredients[i].delete
+        else
+          # 減らした食材を更新
+          render action: :show unless @refrigerator_ingredients[i].update(quantity: quantity)
         end
       end
     end
