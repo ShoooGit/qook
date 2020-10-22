@@ -79,7 +79,12 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipes = RecipesService.search(params[:keyword])
+    search = params[:keyword]
+    if search != ""
+      @recipes = Recipe.where('user_id = ? and name LIKE(?)', current_user.id, "%#{search}%")
+    else
+      @recipes = Recipe.includes(:user).where(user_id: current_user.id)
+    end
   end
 
   private
