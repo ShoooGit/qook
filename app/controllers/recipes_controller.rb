@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
   before_action :move_to_top, only: :edit
   before_action :set_ingredients, only: [:show, :execute]
-  before_action :check_exec, only: :show
+  before_action :check_exec, only: [:show, :execute]
 
   def index
     @recipes = Recipe.includes(:user).where(user_id: current_user.id)
@@ -56,35 +56,15 @@ class RecipesController < ApplicationController
   end
 
   def execute
-    # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
-    @recipe_ingredients.each do |recipe_ingredient|
-      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient, i|
-        # レシピに必要な食材と冷蔵庫の食材の突き合わせ
-        next unless recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
-
-        # 冷蔵庫の食材をレシピに必要な食材数分減らす
-        quantity = @refrigerator_ingredients[i].quantity -= recipe_ingredient.quantity
-
-        # 冷蔵庫の食材数に応じて処理を分岐
-        if quantity.zero?
-          # 食材がなくなったらレコードを削除
-          render action: :show unless @refrigerator_ingredients[i].delete
-        else
-          # 減らした食材を更新
-          render action: :show unless @refrigerator_ingredients[i].update(quantity: quantity)
-        end
-      end
+    if RecipesHelper.execute(@target_ary)
+      redirect_to root_path, notice: '調理を実行し、冷蔵庫内の食材を消費しました'
+    else
+      render action: :show
     end
-    redirect_to root_path, notice: '調理を実行し、冷蔵庫内の食材を消費しました'
   end
 
   def search
-    search = params[:keyword]
-    if search != ""
-      @recipes = Recipe.where('user_id = ? and name LIKE(?)', current_user.id, "%#{search}%")
-    else
-      @recipes = Recipe.includes(:user).where(user_id: current_user.id)
-    end
+    @recipes = RecipesHelper.search(current_user.id, params[:keyword])
   end
 
   private
@@ -117,15 +97,24 @@ class RecipesController < ApplicationController
   def check_exec
     return @flg = FALSE if @refrigerator_ingredients.blank?
 
+    @target_ary = []
     @flg = TRUE
+
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
     @recipe_ingredients.each do |recipe_ingredient|
-      @refrigerator_ingredients.each_with_index do |refrigerator_ingredient, _i|
+      @refrigerator_ingredients.each do |refrigerator_ingredient|
         # レシピに必要な食材と冷蔵庫の食材の突き合わせ
-        return @flg = FALSE unless recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
+        if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
+          # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
+          return @flg = FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
 
-        # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
-        return @flg = FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
+          # レシピ、冷蔵庫の食材数を格納して、ループを抜ける
+          @target_ary.push([recipe_ingredient, refrigerator_ingredient])
+          @flg = TRUE
+          break
+        else
+          @flg = FALSE
+        end
       end
     end
   end
