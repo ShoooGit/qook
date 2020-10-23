@@ -1,0 +1,23 @@
+  <!-- レシピ一覧の表示 -->
+  <div class='recipe-contents'>
+    <ul class='recipe-lists'>
+      <% if recipes %>
+        <% recipes.each do |recipe| %>
+          <li class='list'>
+            <%= link_to recipe_path(recipe.id) do %>
+              <div class='recipe-img-content'>
+                <%= image_tag(recipe.image, class:"recipe-img") %>
+              </div>
+            <% end %>
+            <div class='recipe'>
+                <h3 class='recipe-name'><%= recipe.name %></h3>
+                <div class='recipe-info'>
+                  <h3 class='recipe-name'><%= recipe.calorie %>kcal</h3>
+                  <h3 class='recipe-name'>所要時間：<%= recipe.time %>分</h3>
+                </div>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
