@@ -87,7 +87,7 @@ class RecipesController < ApplicationController
   def set_ingredients
     # レシピに必要な食材を配列で取得
     @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
-    
+
     # ユーザーに紐付く冷蔵庫が存在しなければ、リターン
     return unless Refrigerator.exists?(user_id: current_user.id)
 
@@ -108,10 +108,9 @@ class RecipesController < ApplicationController
     # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
     @recipe_ingredients.each do |recipe_ingredient|
       @refrigerator_ingredients.each do |refrigerator_ingredient|
-
         # レシピに必要な食材と冷蔵庫の食材の突き合わせ
         if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
-        
+
           # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
           return @flg = FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
 
