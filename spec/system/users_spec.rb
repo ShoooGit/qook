@@ -48,15 +48,8 @@ RSpec.describe 'ログイン', type: :system do
   end
   context 'ログインができるとき' do
     it '保存されているユーザーの情報と合致すればログインができる' do
-      # ログインページに移動する
-      visit new_user_session_path
-      # 正しいユーザー情報を入力する
-      fill_in 'email', with: @user.email
-      fill_in 'password', with: @user.password
-      # ログインボタンを押す
-      find('input[value="ログイン"]').click
-      # トップページへ遷移することを確認する
-      expect(current_path).to eq root_path
+      # ログインする
+      sign_in(@user)
       # ログアウトボタンが表示されることを確認する
       expect(find('.logout')).to have_content('ログアウト')
       # ログアウトする
