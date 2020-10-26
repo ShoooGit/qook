@@ -32,8 +32,10 @@ RSpec.describe 'レシピ登録', type: :system do
       expect(page).to have_content("#{@recipe.name}のレシピを登録しました")
       # トップページには先ほど登録したレシピが存在することを確認する（画像）
       expect(page).to have_selector("img[src$='test.jpg']")
-      # トップページには先ほど投稿した内容のツイートが存在することを確認する（テキスト）
+      # トップページには先ほど登録したレシピ名が存在することを確認する（テキスト）
       expect(page).to have_content("#{@recipe.name}")
+      expect(page).to have_content("#{@recipe.calorie}")
+      expect(page).to have_content("#{@recipe.time}")
     end
   end
   context 'レシピ登録ができないとき'do
@@ -46,35 +48,52 @@ RSpec.describe 'レシピ登録', type: :system do
   end
 end
 
-RSpec.describe 'レシピ編集', type: :system do
+RSpec.describe 'レシピ詳細', type: :system do
   before do
     @recipe1 = FactoryBot.create(:recipe)
+    @recipe1_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe1.id)
     @recipe2 = FactoryBot.create(:recipe)
+    @recipe2_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe2.id)
   end
-  context 'レシピ編集ができるとき'do
+  context 'レシピ詳細が確認できるとき'do
     it 'ログインしたユーザーは自分が登録したレシピの編集ができる' do
       # レシピ1を登録したユーザーでログインする
       sign_in(@recipe1.user)
-      # レシピ1のリンクをクリックする
-      click_link "/recipes/#{@recipe1.id}"
-      # 編集ページへ遷移する
+      # トップページにレシピ1へのリンクが存在することを確認する
+      expect(page).to have_link href: "/recipes/#{@recipe1.id}"
+      # レシピ1の詳細ページへ遷移する
+      click_link href: "/recipes/#{@recipe1.id}"
+      # レシピ1の登録内容が表示されていることを確認する
+      # レシピ内容
+      expect(page).to have_content("#{@recipe1.name}")
+      expect(page).to have_selector("img[src$='test.jpg']")
+      expect(page).to have_content("#{@recipe1.calorie}")
+      expect(page).to have_content("#{@recipe1.time}")
 
-      # すでに投稿済みの内容がフォームに入っていることを確認する
-      # 投稿内容を編集する
-      # 編集してもTweetモデルのカウントは変わらないことを確認する
-      # 編集完了画面に遷移したことを確認する
-      # 「更新が完了しました」の文字があることを確認する
-      # トップページに遷移する
-      # トップページには先ほど変更した内容のツイートが存在することを確認する（画像）
-      # トップページには先ほど変更した内容のツイートが存在することを確認する（テキスト）
+      # レシピの食材
+      expect(page).to have_content("#{@recipe1_ingredient.ingredient.name}")
+      expect(page).to have_content("#{@recipe1_ingredient.quantity}")
+
+      # 編集ページのリンクが存在することを確認する
+      expect(page).to have_link href: "/recipes/#{@recipe1.id}/edit"
+      # 削除ページのリンクが存在することを確認する
+      expect(page).to have_link href: "/recipes/#{@recipe1.id}"
     end
   end
-  context 'レシピ登録ができないとき'do
-    it 'ログインしていないとトップページとレシピ登録ページに遷移できない' do
+  context 'レシピ詳細が確認できないとき'do
+    it 'ログインしていないとレシピ詳細ページに遷移できない' do
       # レシピ登録ページに移動する
-      visit new_recipe_path
+      visit recipe_path(@recipe1.id)
       # ログインページに遷移させられる
       expect(current_path).to eq new_user_session_path
+    end
+    it '別ユーザーのレシピ詳細ページに遷移できない' do
+      # レシピ1を登録したユーザーでログインする
+      sign_in(@recipe1.user)
+      # 別ユーザーのレシピ登録ページに移動する
+      visit recipe_path(@recipe2.id)
+      # ログインページに遷移させられる
+      expect(current_path).to eq root_path
     end
   end
 end

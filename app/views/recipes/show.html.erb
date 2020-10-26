@@ -10,13 +10,13 @@
         <div class='form vertical'>
           <div class='list'>
             <div class='recipe-img-content'>
-              <%= image_tag(@recipe.image, class:"recipe-img") %>
+              <%= image_tag(@recipe.image, class:"recipe-img", id:"recipe-img") %>
             </div>
             <div class='recipe'>
-              <h3 class='recipe-name'><%= @recipe.name %></h3>
+              <h3 class='recipe-name', id='recipe-name'><%= @recipe.name %></h3>
               <div class='recipe-info'>
-                <h3 class='recipe-name'><%= @recipe.calorie %>kcal</h3>
-                <h3 class='recipe-name'>所要時間：<%= @recipe.time %>分</h3>
+                <h3 class='recipe-name', id='recipe-calorie'><%= @recipe.calorie %>kcal</h3>
+                <h3 class='recipe-name', id='recipe-time'>所要時間：<%= @recipe.time %>分</h3>
               </div>
             </div>
           </div>
