@@ -19,8 +19,7 @@ RSpec.describe 'レシピ登録', type: :system do
       fill_in 'recipe-name', with: @recipe.name
       fill_in 'calorie', with: @recipe.calorie
       fill_in 'time', with: @recipe.time
-      image_path = File.join(Rails.root, "public/images/test.jpg")
-      page.('.image').set(image_path)
+      attach_file 'recipe-image', "#{Rails.root}/public/images/test.jpg"
       find('option[value="14"]').select_option
       fill_in 'quantity', with: @recipe_ingredient.quantity
       # 登録するとRecipeモデルとRecipeIngredientモデルのカウントが1上がることを確認する
@@ -32,14 +31,16 @@ RSpec.describe 'レシピ登録', type: :system do
       # 「カレーライスのレシピを登録しました」の文字があることを確認する
       expect(page).to have_content("#{@recipe.name}のレシピを登録しました")
       # トップページには先ほど登録したレシピが存在することを確認する（画像）
-      expect(page).to have_selector("img[src$=#{@recipe.image}]")
+      expect(page).to have_selector("img[src$='test.jpg']")
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（テキスト）
     end
   end
-  context 'ツイート投稿ができないとき'do
+  context 'レシピ登録ができないとき'do
     it 'ログインしていないとトップページとレシピ登録ページに遷移できない' do
-      # トップページに遷移する
-      # 新規投稿ページへのリンクがない
+      # レシピ登録ページに移動する
+      visit new_recipe_path
+      # ログインページに遷移させられる
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
