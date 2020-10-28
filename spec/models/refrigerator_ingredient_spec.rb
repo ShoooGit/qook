@@ -9,6 +9,10 @@ RSpec.describe RefrigeratorIngredient, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@refrigerator_ingredient).to be_valid
     end
+    it 'refrigerator_idとingredient_idの両方が重複しなければ保存できること' do
+      FactoryBot.create(:refrigerator_ingredient)
+      expect(@refrigerator_ingredient).to be_valid
+    end
     it '冷蔵庫が紐付いていなければ登録できないこと' do
       @refrigerator_ingredient.refrigerator = nil
       @refrigerator_ingredient.valid?
@@ -24,8 +28,9 @@ RSpec.describe RefrigeratorIngredient, type: :model do
       @refrigerator_ingredient.valid?
       expect(@refrigerator_ingredient.errors.full_messages).to include('食材を入力してください')
     end
-    it 'ingredient_idが重複すると保存できないこと' do
-      FactoryBot.create(:refrigerator_ingredient)
+    it 'refrigerator_idとingredient_idの両方が重複すると保存できないこと' do
+      @refrigerator_ingredient2 = FactoryBot.create(:refrigerator_ingredient)
+      @refrigerator_ingredient.refrigerator_id = @refrigerator_ingredient2.refrigerator_id
       @refrigerator_ingredient.valid?
       expect(@refrigerator_ingredient.errors.full_messages).to include('食材はすでに存在します')
     end

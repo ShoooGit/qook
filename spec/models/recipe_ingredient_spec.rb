@@ -9,6 +9,10 @@ RSpec.describe RecipeIngredient, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@recipe_ingredient).to be_valid
     end
+    it 'recipe_idとingredient_idの両方が重複しなければ保存できること' do
+      FactoryBot.create(:recipe_ingredient)
+      expect(@recipe_ingredient).to be_valid
+    end
     it 'レシピが紐付いていなければ登録できないこと' do
       @recipe_ingredient.recipe = nil
       @recipe_ingredient.valid?
@@ -24,7 +28,7 @@ RSpec.describe RecipeIngredient, type: :model do
       @recipe_ingredient.valid?
       expect(@recipe_ingredient.errors.full_messages).to include('食材を入力してください')
     end
-    it 'recipe_idとingredient_idが重複すると保存できないこと' do
+    it 'recipe_idとingredient_idの両方が重複すると保存できないこと' do
       @recipe_ingredient2 = FactoryBot.create(:recipe_ingredient)
       @recipe_ingredient.recipe_id = @recipe_ingredient2.recipe_id
       @recipe_ingredient.valid?
