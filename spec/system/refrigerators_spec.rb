@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe '冷蔵庫登録', type: :system do
   before do
     @user = FactoryBot.create(:user)
+    @refrigerator_ingredient = FactoryBot.build(:refrigerator_ingredient)
   end
   context '冷蔵庫登録ができるとき'do
     it 'ログインしたユーザーはレシピ登録ができる' do
@@ -11,7 +12,7 @@ RSpec.describe '冷蔵庫登録', type: :system do
       # 冷蔵庫ページへのリンクがあることを確認する
       expect(page).to have_link(href: "/refrigerators/new")
       # 冷蔵庫ページに移動する
-      click_on("冷蔵庫へ")
+      visit new_refrigerator_path
       # 追加ボタンをクリックして、食材入力フォームを追加する
       click_on("追加")
       # 食材入力フォームが追加され、2つになっていることを確認する
@@ -28,10 +29,11 @@ RSpec.describe '冷蔵庫登録', type: :system do
       end
       # 登録するとrefrigeratorモデルのカウントが1、refrigeratorIngredientモデルのカウントが1上がることを確認する
       expect  do
-        click_on("登録")
-      end.to change { refrigerator.count }.by(1).and change { refrigeratorIngredient.count }.by(2)
-      # レシピ登録後は、トップページに遷移することを確認する
+        click_on("確定")
+      end.to change { Refrigerator.count }.by(1).and change { RefrigeratorIngredient.count }.by(2)
+      # 冷蔵庫登録後は、トップページに遷移することを確認する
       expect(current_path).to eq root_path
+      # 編集
     end
   end
   # context 'レシピ登録ができないとき'do
