@@ -17,5 +17,5 @@ class RefrigeratorIngredient < ApplicationRecord
       less_than_or_equal_to: 1_000
     }
   end
-  validates :refrigerator_id, :uniqueness => {:scope => :ingredient_id}
+  validates :refrigerator_id, uniqueness: { scope: :ingredient_id }
 end

@@ -17,5 +17,5 @@ class RecipeIngredient < ApplicationRecord
       less_than_or_equal_to: 1_000
     }
   end
-  validates :recipe_id, :uniqueness => {:scope => :ingredient_id}
+  validates :recipe_id, uniqueness: { scope: :ingredient_id }
 end
