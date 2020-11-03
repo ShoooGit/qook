@@ -11,12 +11,14 @@ ja:
         calorie: カロリー
         time:    調理時間
       recipe_ingredient:
+        recipe_id:      食材
         recipe:         レシピ名
         ingredient_id:  食材
         quantity:       食材の単位
       refrigerator:
         user:    ユーザー
       refrigerator_ingredient:
+        refrigerator_id:      食材
         refrigerator:         冷蔵庫
         ingredient_id:        食材
         quantity:             食材の単位

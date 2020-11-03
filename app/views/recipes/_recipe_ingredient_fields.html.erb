@@ -1,4 +1,4 @@
-<div class="nested-fields">
+<div class="nested-fields" id="nested-fields">
   <div class='side-by-side foodstuff'>
     <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name,{}, {class:"select-box", id:"ingredient"}) %>
     <%= f.number_field :quantity, class:"num-field", id:"quantity" %>

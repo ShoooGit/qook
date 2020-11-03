@@ -10,8 +10,8 @@
 
     <!-- 検索フォーム -->
     <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-form") do |form| %>
-      <%= form.text_field :keyword, placeholder: "レシピを探す", class: "input-box" %>
-      <%= form.button :type => "submit", class: "search-button" do %>
+      <%= form.text_field :keyword, placeholder: "レシピを探す", class: "input-box", id: "input-box" %>
+      <%= form.button :type => "submit", class: "search-button", id: "search-button" do %>
         <%= image_tag('search.png', class: 'search-icon') %>
       <% end %>
     <% end %>

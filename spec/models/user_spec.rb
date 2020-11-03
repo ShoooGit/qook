@@ -19,7 +19,8 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('メールアドレスを入力してください')
     end
     it 'emailが重複すると保存できないこと' do
-      FactoryBot.create(:user)
+      another = FactoryBot.create(:user)
+      @user.email = another.email
       @user.valid?
       expect(@user.errors.full_messages).to include('メールアドレスはすでに存在します')
     end
