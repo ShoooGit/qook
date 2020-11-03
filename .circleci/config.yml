@@ -33,6 +33,7 @@ jobs:
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      # yarnをインストールしないとrspecでエラーとなる
       - run:
           name: yarn Install
           command: yarn install
