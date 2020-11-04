@@ -31,3 +31,8 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.guest{
+  display: block;
+  text-align: center;
+}
