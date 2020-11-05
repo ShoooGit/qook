@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_100333) do
+ActiveRecord::Schema.define(version: 2020_11_05_064332) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_100333) do
   create_table "recipe_ingredients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.integer "ingredient_id", null: false
-    t.integer "quantity", null: false
+    t.float "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id", "ingredient_id"], name: "index_recipe_id_and_ingredient_id", unique: true
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_100333) do
   create_table "refrigerator_ingredients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "refrigerator_id", null: false
     t.integer "ingredient_id", null: false
-    t.integer "quantity", null: false
+    t.float "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["refrigerator_id", "ingredient_id"], name: "index_refrigerator_id_and_ingredient_id", unique: true
