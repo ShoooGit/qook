@@ -13,7 +13,7 @@ class RefrigeratorIngredient < ApplicationRecord
     validates :ingredient_id, numericality: { other_than: 0, message: 'を選択してください' }
     # 1 ~ 1000
     validates :quantity, numericality: {
-      greater_than_or_equal_to: 1,
+      greater_than_or_equal_to: 0.1,
       less_than_or_equal_to: 1_000
     }
   end

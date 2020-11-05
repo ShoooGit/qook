@@ -1,7 +1,6 @@
 function changeUnit(selectBox) {
   // イベントを発生させたセレクトボックスの親要素を基準に、子要素（単位）を取得
   unit = selectBox.parentNode.children[2];
-  console.log(unit);
 
   // イベントを発生させたセレクトボックスのidを取得
   selindex = selectBox.value;

@@ -86,3 +86,6 @@ gem 'cocoon'
 
 # ActiveHash
 gem 'active_hash'
+
+# CarrierWave
+gem 'carrierwave'

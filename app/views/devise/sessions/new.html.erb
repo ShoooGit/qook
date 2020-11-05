@@ -33,10 +33,10 @@
   </div>
   <div class='btns'>
     <div class='submit-btn'>
-      <%= f.submit "ゲスト" ,class:"submit-color-btn" %>
+      <%= f.submit "ログイン" , class:"submit-color-btn" %>
     </div>
     <div class='submit-btn'>
-      <%= f.submit "ログイン" ,class:"submit-color-btn" %>
+      <%= link_to 'ゲスト', users_guest_sign_in_path, class:"submit-color-btn guest" %>
     </div>
   </div>
   <div class='add-user'>

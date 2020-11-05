@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # アソシエーションの設定
-  has_many :recipes
-  has_one  :refrigerator
+  has_many :recipes, dependent: :destroy
+  has_one  :refrigerator, dependent: :destroy
 
   # バリデーションの設定
   validates :nickname, presence: true
