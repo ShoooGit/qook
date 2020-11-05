@@ -47,7 +47,7 @@ RSpec.describe RecipeIngredient, type: :model do
     it 'quantityが1~1000でないと登録できないこと' do
       @recipe_ingredient.quantity = '0'
       @recipe_ingredient.valid?
-      expect(@recipe_ingredient.errors.full_messages).to include('食材の単位は1以上の値にしてください')
+      expect(@recipe_ingredient.errors.full_messages).to include('食材の単位は0.1以上の値にしてください')
     end
     it 'quantityが1~1000でないと登録できないこと' do
       @recipe_ingredient.quantity = '1001'
