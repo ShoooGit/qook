@@ -1,3 +1,9 @@
+# すでにゲストユーザーが存在する場合は、ゲストユーザーとそれに紐づくデータを削除
+if User.exists?(id: 1)
+  user = User.find(1)
+  user.destroy
+end
+
 # ゲストユーザーの作成
 User.create(id: 1, nickname: "ゲスト", email: "guest@com", password: "guestpass1")
 
