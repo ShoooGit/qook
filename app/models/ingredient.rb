@@ -11,12 +11,13 @@ class Ingredient < ActiveHash::Base
   #  8: 束
   #  9: 片
 
-  # 最終振り出しは71
+  # 最終振り出しは74
 
   self.data = [
     { id: 0, name: '---', unit: '個' }, { id: 660, name: '卵', unit: '個' }, { id: 14, name: '鶏もも肉', unit: 'g(ml)' },
     { id: 24, name: '鶏むね肉', unit: 'g(ml)' }, { id: 34, name: '鶏ささみ', unit: 'g(ml)' }, { id: 44, name: '牛バラ肉', unit: 'g(ml)' },
     { id: 54, name: '豚バラ肉', unit: 'g(ml)' }, { id: 64, name: '豚ロース', unit: 'g(ml)' }, { id: 711, name: '豚ロース(とんかつ用)', unit: '枚' },
+    { id: 724, name: '合挽き肉', unit: 'g(ml)' },
     { id: 72, name: 'アスパラガス', unit: '本' }, { id: 80, name: 'かぼちゃ', unit: '個' }, { id: 90, name: 'キャベツ', unit: '個' },
     { id: 102, name: 'きゅうり', unit: '本' }, { id: 112, name: 'ごぼう', unit: '本' }, { id: 128, name: '小松菜', unit: '束' },
     { id: 132, name: 'さやいんげん', unit: '本' }, { id: 142, name: '大根', unit: '本' }, { id: 150, name: 'たけのこ', unit: '個' },
@@ -38,6 +39,6 @@ class Ingredient < ActiveHash::Base
     { id: 684, name: 'ウスターソース', unit: 'g(ml)' }, { id: 694, name: 'ケチャップ', unit: 'g(ml)' },
     { id: 584, name: 'みりん', unit: 'g(ml)' }, { id: 594, name: '料理酒', unit: 'g(ml)' }, { id: 604, name: '酢', unit: 'g(ml)' },
     { id: 614, name: '味噌', unit: 'g(ml)' }, { id: 629, name: 'カレールウ', unit: '片' }, { id: 634, name: '水', unit: 'g(ml)' },
-    { id: 644, name: 'ほんだし', unit: 'g(ml)' }
+    { id: 644, name: 'ほんだし', unit: 'g(ml)' }, { id: 734, name: 'パン粉', unit: 'g(ml)' }, { id: 744, name: '牛乳', unit: 'g(ml)' }
   ]
 end

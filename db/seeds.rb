@@ -100,4 +100,18 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 544, quantity: 8)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 30)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 584, quantity: 30)
 
+# ハンバーグ
+recipe = Recipe.new(user_id: 1, name: 'ハンバーグ', calorie: 400, time: 20)
+recipe.image.attach(io: File.open('public/images/ハンバーグ.jpg'), filename: 'ハンバーグ.jpg')
+recipe.save
+
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 724, quantity: 300)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 160, quantity: 1)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 734, quantity: 70)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 744, quantity: 30)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 660, quantity: 1)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 704, quantity: 30)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 694, quantity: 15)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 594, quantity: 15)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 10)
 
