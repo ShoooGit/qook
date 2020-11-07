@@ -115,3 +115,18 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 694, quantity: 15)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 594, quantity: 15)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 10)
 
+# 豚汁
+recipe = Recipe.new(user_id: 1, name: '豚汁', calorie: 300, time: 20)
+recipe.image.attach(io: File.open('public/images/豚汁.jpg'), filename: '豚汁.jpg')
+recipe.save
+
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 54, quantity: 100)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 112, quantity: 0.5)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 142, quantity: 0.5)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 212, quantity: 1)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 232, quantity: 0.5)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 750, quantity: 0.5)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 634, quantity: 500)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 644, quantity: 5)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 614, quantity: 30)
+

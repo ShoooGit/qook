@@ -11,13 +11,13 @@ class Ingredient < ActiveHash::Base
   #  8: 束
   #  9: 片
 
-  # 最終振り出しは74
+  # 最終振り出しは75
 
   self.data = [
     { id: 0, name: '---', unit: '個' }, { id: 660, name: '卵', unit: '個' }, { id: 14, name: '鶏もも肉', unit: 'g(ml)' },
     { id: 24, name: '鶏むね肉', unit: 'g(ml)' }, { id: 34, name: '鶏ささみ', unit: 'g(ml)' }, { id: 44, name: '牛バラ肉', unit: 'g(ml)' },
     { id: 54, name: '豚バラ肉', unit: 'g(ml)' }, { id: 64, name: '豚ロース', unit: 'g(ml)' }, { id: 711, name: '豚ロース(とんかつ用)', unit: '枚' },
-    { id: 724, name: '合挽き肉', unit: 'g(ml)' },
+    { id: 724, name: '合挽き肉', unit: 'g(ml)' },{ id: 750, name: 'こんにゃく', unit: '個' },
     { id: 72, name: 'アスパラガス', unit: '本' }, { id: 80, name: 'かぼちゃ', unit: '個' }, { id: 90, name: 'キャベツ', unit: '個' },
     { id: 102, name: 'きゅうり', unit: '本' }, { id: 112, name: 'ごぼう', unit: '本' }, { id: 128, name: '小松菜', unit: '束' },
     { id: 132, name: 'さやいんげん', unit: '本' }, { id: 142, name: '大根', unit: '本' }, { id: 150, name: 'たけのこ', unit: '個' },
