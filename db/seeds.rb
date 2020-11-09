@@ -130,3 +130,17 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 634, quantity: 500)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 644, quantity: 5)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 614, quantity: 30)
 
+# 回鍋肉
+recipe = Recipe.new(user_id: 1, name: '回鍋肉', calorie: 400, time: 20)
+recipe.image.attach(io: File.open('public/images/回鍋肉.jpg'), filename: '回鍋肉.jpg')
+recipe.save
+
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 54, quantity: 150)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 90, quantity: 0.25)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 260, quantity: 2)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 774, quantity: 10)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 784, quantity: 60)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 764, quantity: 10)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 10)
+RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 594, quantity: 10)
+

@@ -37,6 +37,7 @@ class Ingredient < ActiveHash::Base
     { id: 536, name: 'かに', unit: '杯' }, { id: 544, name: '砂糖', unit: 'g(ml)' }, { id: 554, name: '塩', unit: 'g(ml)' },
     { id: 564, name: '胡椒', unit: 'g(ml)' }, { id: 574, name: '醤油', unit: 'g(ml)' }, { id: 704, name: 'コンソメ', unit: 'g(ml)' },
     { id: 684, name: 'ウスターソース', unit: 'g(ml)' }, { id: 694, name: 'ケチャップ', unit: 'g(ml)' },
+    { id: 774, name: '豆板醤', unit: 'g(ml)' }, { id: 784, name: '甜麺醤', unit: 'g(ml)' }, { id: 764, name: 'ごま油', unit: 'g(ml)' },
     { id: 584, name: 'みりん', unit: 'g(ml)' }, { id: 594, name: '料理酒', unit: 'g(ml)' }, { id: 604, name: '酢', unit: 'g(ml)' },
     { id: 614, name: '味噌', unit: 'g(ml)' }, { id: 629, name: 'カレールウ', unit: '片' }, { id: 634, name: '水', unit: 'g(ml)' },
     { id: 644, name: 'ほんだし', unit: 'g(ml)' }, { id: 734, name: 'パン粉', unit: 'g(ml)' }, { id: 744, name: '牛乳', unit: 'g(ml)' }
