@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   before_action :check_exec, only: [:show, :execute]
 
   def index
-    @recipes = Recipe.includes(:user).where(user_id: current_user.id)
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id).page(params[:page]).per(6)
   end
 
   def new
@@ -64,7 +64,7 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipes = RecipesHelper.search(current_user.id, params[:keyword])
+    @recipes = RecipesHelper.search(current_user.id, params[:keyword], params[:page])
   end
 
   private

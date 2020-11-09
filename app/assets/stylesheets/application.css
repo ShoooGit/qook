@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  height: 100vh;
+}
+
+.container{
+  position: relative;
+  min-height: 100%;
+}
