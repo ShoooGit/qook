@@ -89,3 +89,6 @@ gem 'active_hash'
 
 # CarrierWave
 gem 'carrierwave'
+
+# kaminari
+gem 'kaminari'
