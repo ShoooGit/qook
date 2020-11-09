@@ -1,18 +1,18 @@
-<!-- ヘッダーの表示 -->
-<%= render "shared/header" %>
-<div class='main'>
+  <!-- ヘッダーの表示 -->
+  <%= render "shared/header" %>
+  <div class='main'>
 
-  <div class='recipe-contents'>
-    <h2 class='title'>おすすめレシピ</h2>
+    <div class='recipe-contents'>
+      <h2 class='title'>おすすめレシピ</h2>
+    </div>
+
+    <!-- レシピ一覧の表示 -->
+    <%= render "recipe", recipes: @recipes %>
+
   </div>
 
-  <!-- レシピ一覧の表示 -->
-  <%= render "recipe", recipes: @recipes %>
+  <!-- フッターの表示 -->
+  <%= render "shared/footer" %>
 
-</div>
-
-<!-- フッターの表示 -->
-<%= render "shared/footer" %>
-
-<!-- 冷蔵庫ボタン -->
-<%= render "shared/refrigerator" %>
+  <!-- 冷蔵庫ボタン -->
+  <%= render "shared/refrigerator" %>
