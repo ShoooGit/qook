@@ -1,7 +1,3 @@
-a {
-  text-decoration: none;
-}
-
 .main {
   box-sizing: border-box;
   padding-top: 100px;
@@ -36,6 +32,11 @@ a {
   margin: 1vw 3vw;
   background-color: #FFEFD5;
   display: flex;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.4);
+}
+
+.recipe-lists>.list:hover {
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.6);
 }
 
 .recipe-img-content {
