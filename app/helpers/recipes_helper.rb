@@ -1,9 +1,9 @@
 module RecipesHelper
   def self.search(user_id, search, page)
     if search != ''
-      Recipe.where('user_id = ? and name LIKE(?)', user_id, "%#{search}%").page(page).per(6)
+      Recipe.where('user_id = ? and name LIKE(?)', user_id, "%#{search}%").page(page).per(4)
     else
-      Recipe.includes(:user).where(user_id: user_id).page(page).per(6)
+      Recipe.includes(:user).where(user_id: user_id).page(page).per(4)
     end
   end
 
