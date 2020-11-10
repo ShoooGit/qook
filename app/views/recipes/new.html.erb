@@ -7,7 +7,7 @@
       </div>
       <%= form_with model: @recipe, url: '/recipes', method: :post, local: true do |f| %>
 
-        <div class='container'>
+        <div class='recipe-container'>
           <div class='form'>
 
               <!-- レシピ名入力 -->
@@ -68,7 +68,7 @@
           <h2 class="title">食材の入力</h2>
         </div>
 
-        <div class="container foodstuff-container">
+        <div class="recipe-container foodstuff-container">
           <div class="form vertical">
             <div class='flash-message'>
               <%= flash[:alert] %>

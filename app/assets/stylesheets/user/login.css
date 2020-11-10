@@ -32,6 +32,10 @@
   margin-top: 20px;
 }
 
+.add-user>a:hover{
+  color: deepskyblue;
+}
+
 .guest{
   display: block;
   text-align: center;

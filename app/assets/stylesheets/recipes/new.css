@@ -9,8 +9,8 @@
   font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
   font-size: 14px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   min-width: 500px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 /* コンテナ */
-.container{
+.recipe-container{
   padding: 2vh 0;
   display: flex;
   justify-content: center;

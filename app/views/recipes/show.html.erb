@@ -9,7 +9,7 @@
         <%= flash[:notice] %>
       </div>
 
-      <div class='container'>
+      <div class='recipe-container'>
         <div class='form vertical'>
           <div class='list'>
             <div class='recipe-img-content'>
@@ -30,7 +30,7 @@
         <h2 class="title">食材情報</h2>
       </div>
 
-      <div class="container foodstuff-container">
+      <div class="recipe-container foodstuff-container">
         <div class="show-form vertical">
           <% @recipe.recipe_ingredients.each do |r_ingredient| %>
             <div class='side-by-side foodstuff'>

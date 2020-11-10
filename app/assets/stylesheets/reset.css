@@ -10,7 +10,7 @@
 */
 html{
   color:#000;
-  background: #FFEFD5;
+  background: #ffefd5;
 }
 /*
   TODO remove settings on BODY since we can't namespace it.
@@ -122,5 +122,14 @@ select {
 legend {
   color:#000;
 }
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: white
+}
+
 /* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssreset { display: none; }

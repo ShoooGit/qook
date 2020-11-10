@@ -16,13 +16,39 @@
 
 body{
   height: 100vh;
+  background-color: #FFEFD5;
 }
 
-.container{
+.body-container{
   position: relative;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #FF8856;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #FF8856;     /*背景の色を変える*/
+  border-radius: 15px !important;     /*角を丸くする*/
+}
+
+/* 表示しているページ番号のホバー時デザイン */
+.pagination>.active>a:hover {     
+  background: #FF8856;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  background: #FF8856;     /*背景の色を変える*/
+  border-radius: 15px;    /*角を丸くする*/
+  color: white;
 }
