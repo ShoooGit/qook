@@ -1,15 +1,16 @@
 .list {
-  width: 100%;
+  width: 90%;
   margin: 1vw 3vw;
   background-color: #ffffff;
   display: flex;
+  border-radius: 10px;
 }
 
 /* 入力フォーム */
 .show-form{
   width: 70%;
   padding: 3vh 4vw;
-  border: 1px solid  #CC6633;
+  border: 1px solid  #FF8856;
   border-radius:6px;
   background-color: #fff;
 }

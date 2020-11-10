@@ -21,7 +21,7 @@ a {
   font-size: 5vh;
   line-height: 1.4;
   font-weight: bold;
-  color: #CC6633;
+  color: #FF8856;
 }
 
 .recipe-lists {
@@ -32,14 +32,14 @@ a {
 }
 
 .recipe-lists>.list {
-  width: 40vw;
+  width: 35vw;
   margin: 1vw 3vw;
   background-color: #FFEFD5;
   display: flex;
 }
 
 .recipe-img-content {
-  width: 27vw;
+  width: 22vw;
   height: 100%;
 }
 
@@ -77,9 +77,9 @@ a {
 .recipe>.recipe-name{
   font-size: 3vh;
   font-weight: bold;
-  color: #CC6633;
+  color: #FF8856;
 }
 
 .recipe-info>.recipe-name{
-  border-bottom: 1px solid #CC6633;
+  border-bottom: 1px solid  #FF8856;
 }
