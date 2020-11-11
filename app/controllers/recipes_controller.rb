@@ -124,4 +124,35 @@ class RecipesController < ApplicationController
       end
     end
   end
+
+  def update_flg(recipe)
+    # レシピ食材のセット
+    recipe_ingredients = RecipeIngredient.where(recipe_id: recipe.id)
+    
+    # 冷蔵庫食材のセット
+    refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
+    
+    # 調理可否フラグの初期化
+    flg = TRUE
+
+    # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
+    recipe_ingredients.each do |recipe_ingredient|
+      refrigerator_ingredients.each do |refrigerator_ingredient|
+        # レシピに必要な食材と冷蔵庫の食材の突き合わせ
+        if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
+          # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
+          return FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
+          flg = TRUE
+          break
+        else
+          flg = FALSE
+        end
+      end
+    end
+
+    return flg
+
+  end
+
+
 end
