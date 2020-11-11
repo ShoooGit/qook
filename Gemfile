@@ -92,3 +92,6 @@ gem 'carrierwave'
 
 # kaminari
 gem 'kaminari'
+
+# binding.pry
+gem 'pry-rails'
