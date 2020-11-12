@@ -2,11 +2,9 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_recipe, only: [:show, :edit, :update]
   before_action :move_to_top, only: [:show, :edit]
-  before_action :set_ingredients, only: [:show, :execute]
-  before_action :check_exec, only: [:show, :execute]
 
   def index
-    @recipes = Recipe.includes(:user).where(user_id: current_user.id).page(params[:page]).per(4)
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id).where(cook_flg: TRUE).page(params[:page]).per(4)
   end
 
   def new
@@ -19,6 +17,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    # 調理可否フラグの設定
+    @recipe.cook_flg = RecipesHelper.check_cooking(@recipe, current_user)
     begin
       if @recipe.save
         redirect_to root_path, notice: "#{@recipe.name}のレシピを登録しました"
@@ -35,14 +35,17 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
-    else
+    begin
+      if @recipe.update(recipe_params)
+        RecipesHelper.update_flg(@recipe, current_user)
+        redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
+      else
+        render action: :edit
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = '重複する食材があります'
       render action: :edit
     end
-  rescue ActiveRecord::RecordNotUnique
-    flash.now[:alert] = '重複する食材があります'
-    render action: :edit
   end
 
   def destroy
@@ -56,7 +59,14 @@ class RecipesController < ApplicationController
   end
 
   def execute
-    if RecipesHelper.execute(@target_ary)
+    if RecipesHelper.execute(params[:id], current_user.refrigerator.id)
+
+      # 食材を消費したら、全レシピの調理可否フラグを更新する
+      @recipes = Recipe.includes(:user).where(user_id: current_user.id)
+      @recipes.each do |recipe|
+        RecipesHelper.update_flg(recipe, current_user)
+      end
+
       redirect_to root_path, notice: '調理を実行し、冷蔵庫内の食材を消費しました'
     else
       render action: :show
@@ -82,76 +92,6 @@ class RecipesController < ApplicationController
   def move_to_top
     # 別ユーザのレシピ編集画面にアクセスした場合、トップページにリダイレクト
     redirect_to root_path if current_user.id != @recipe.user_id
-  end
-
-  def set_ingredients
-    # レシピに必要な食材を配列で取得
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
-
-    # ユーザーに紐付く冷蔵庫が存在しなければ、リターン
-    return unless Refrigerator.exists?(user_id: current_user.id)
-
-    # ログインしているユーザーの冷蔵庫の食材を配列で取得
-    @refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
-  end
-
-  def check_exec
-    # 冷蔵庫が空だった場合、FALSEを返す
-    return @flg = FALSE if @refrigerator_ingredients.blank?
-
-    # 対象の食材を格納する配列を宣言
-    @target_ary = []
-
-    # フラグの初期化
-    @flg = TRUE
-
-    # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
-    @recipe_ingredients.each do |recipe_ingredient|
-      @refrigerator_ingredients.each do |refrigerator_ingredient|
-        # レシピに必要な食材と冷蔵庫の食材の突き合わせ
-        if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
-
-          # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
-          return @flg = FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
-
-          # 対象の食材を格納して、フラグをTRUEに更新後、ループを抜ける
-          @target_ary.push([recipe_ingredient, refrigerator_ingredient])
-          @flg = TRUE
-          break
-        else
-          @flg = FALSE
-        end
-      end
-    end
-  end
-
-  def update_flg(recipe)
-    # レシピ食材のセット
-    recipe_ingredients = RecipeIngredient.where(recipe_id: recipe.id)
-    
-    # 冷蔵庫食材のセット
-    refrigerator_ingredients = RefrigeratorIngredient.where(refrigerator_id: current_user.refrigerator.id)
-    
-    # 調理可否フラグの初期化
-    flg = TRUE
-
-    # レシピに必要な食材と冷蔵庫の食材を突き合わせるループ
-    recipe_ingredients.each do |recipe_ingredient|
-      refrigerator_ingredients.each do |refrigerator_ingredient|
-        # レシピに必要な食材と冷蔵庫の食材の突き合わせ
-        if recipe_ingredient.ingredient_id == refrigerator_ingredient.ingredient_id
-          # レシピに必要な食材が冷蔵庫に足りていない場合は、調理不可とする
-          return FALSE unless recipe_ingredient.quantity <= refrigerator_ingredient.quantity
-          flg = TRUE
-          break
-        else
-          flg = FALSE
-        end
-      end
-    end
-
-    return flg
-
   end
 
 

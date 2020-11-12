@@ -13,6 +13,11 @@ class RefrigeratorsController < ApplicationController
     @refrigerator = Refrigerator.new(refrigerator_params)
     begin
       if @refrigerator.save
+        # 冷蔵庫を作成したら、全レシピの調理可否フラグを更新する
+        @recipes = Recipe.includes(:user).where(user_id: current_user.id)
+        @recipes.each do |recipe|
+          RecipesHelper.update_flg(recipe, current_user)
+        end
         redirect_to root_path, notice: '冷蔵庫を作成し、食材を追加しました'
       else
         render action: :new
@@ -28,6 +33,11 @@ class RefrigeratorsController < ApplicationController
 
   def update
     if @refrigerator.update(refrigerator_params)
+      # 冷蔵庫の食材を更新したら、全レシピの調理可否フラグを更新する
+      @recipes = Recipe.includes(:user).where(user_id: current_user.id)
+      @recipes.each do |recipe|
+        RecipesHelper.update_flg(recipe, current_user)
+      end
       redirect_to root_path, notice: '冷蔵庫の内容を更新しました'
     else
       render action: :edit
