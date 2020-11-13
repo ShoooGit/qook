@@ -3,6 +3,7 @@ FactoryBot.define do
     name              { 'カレーライス' }
     calorie           { '100' }
     time              { '60' }
+    cook_flg          { true }
 
     association :user
 
