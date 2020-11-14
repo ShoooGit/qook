@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :move_to_top, only: [:show, :edit]
 
   def index
-    @recipes = Recipe.includes(:user).where(user_id: current_user.id).where(cook_flg: TRUE).page(params[:page]).per(4)
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id).where(cook_flg: true).page(params[:page]).per(4)
   end
 
   def new
