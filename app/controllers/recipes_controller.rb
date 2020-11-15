@@ -35,17 +35,15 @@ class RecipesController < ApplicationController
   end
 
   def update
-    begin
-      if @recipe.update(recipe_params)
-        RecipesHelper.update_flg(@recipe, current_user)
-        redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
-      else
-        render action: :edit
-      end
-    rescue ActiveRecord::RecordNotUnique
-      flash.now[:alert] = '重複する食材があります'
+    if @recipe.update(recipe_params)
+      RecipesHelper.update_flg(@recipe, current_user)
+      redirect_to recipe_path(@recipe.id), notice: "#{@recipe.name}のレシピを編集しました"
+    else
       render action: :edit
     end
+  rescue ActiveRecord::RecordNotUnique
+    flash.now[:alert] = '重複する食材があります'
+    render action: :edit
   end
 
   def destroy
@@ -93,6 +91,4 @@ class RecipesController < ApplicationController
     # 別ユーザのレシピ編集画面にアクセスした場合、トップページにリダイレクト
     redirect_to root_path if current_user.id != @recipe.user_id
   end
-
-
 end

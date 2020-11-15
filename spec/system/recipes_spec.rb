@@ -6,7 +6,7 @@ RSpec.describe 'レシピ一覧', type: :system do
     @user = @recipe1.user
     @recipe2 = FactoryBot.build(:recipe)
     @recipe2.user_id = @recipe1.user_id
-    @recipe2.name = "test2"
+    @recipe2.name = 'test2'
     @recipe2.cook_flg = false
     @recipe2.save
   end
@@ -14,7 +14,7 @@ RSpec.describe 'レシピ一覧', type: :system do
     it 'ログインしたユーザーは調理可能なレシピを閲覧できる' do
       # ログインする
       sign_in(@user)
-      
+
       # トップページには調理可能なレシピが存在することを確認する（画像）
       expect(page).to have_selector("img[src$='test.jpg']")
 
@@ -25,7 +25,6 @@ RSpec.describe 'レシピ一覧', type: :system do
 
       # トップページには調理不可能なレシピが存在しないことを確認する（テキスト）
       expect(page).to have_no_content(@recipe2.name)
-      
     end
   end
 end
@@ -131,10 +130,7 @@ RSpec.describe 'レシピ詳細', type: :system do
     @recipe1_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe1.id)
     @refrigerator1 = FactoryBot.create(:refrigerator, user_id: @recipe1.user.id)
     @refrigerator1_ingredient = FactoryBot.create(:refrigerator_ingredient, refrigerator_id: @refrigerator1.id)
-    @recipe2 = FactoryBot.create(:recipe)
-    @recipe2_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe2.id, quantity: 2)
-    @refrigerator2 = FactoryBot.create(:refrigerator, user_id: @recipe2.user.id)
-    @refrigerator2_ingredient = FactoryBot.create(:refrigerator_ingredient, refrigerator_id: @refrigerator2.id)
+    @recipe2 = FactoryBot.create(:recipe, cook_flg: false)
   end
   context 'レシピ詳細が確認できるとき' do
     it 'ログインしたユーザーは自分が登録したレシピ詳細を確認できる' do
@@ -205,22 +201,9 @@ RSpec.describe 'レシピ詳細', type: :system do
       # レシピ2を登録したユーザーでログインする
       sign_in(@recipe2.user)
 
-      # 冷蔵庫ページに移動する
-      visit edit_refrigerator_path(@refrigerator2.id)
-
-      # 1つ目の食材入力フォームへの入力
-      within(all(:css, '.nested-fields')[0]) do
-        find('option[value="14"]').select_option
-        fill_in 'quantity', with: 1
-      end
-
-      click_on('確定')
-
-      # 冷蔵庫登録後は、トップページに遷移することを確認する
-      expect(current_path).to eq root_path
-      
       # レシピ2の詳細ページへ遷移する
       visit recipe_path(@recipe2.id)
+
       # レシピ2の詳細ページの調理実行ボタンが無効になっていること
       expect(page).to have_content('調理に必要な食材が足りません')
     end
