@@ -7,8 +7,16 @@ end
 # ゲストユーザーの作成
 User.create(id: 1, nickname: "ゲスト", email: "guest@com", password: "guestpass1")
 
-#肉じゃが
-recipe = Recipe.new(user_id: 1, name: '肉じゃが', calorie: 400, time: 30, cook_flg: TRUE)
+# 冷蔵庫の作成
+refrigerator = Refrigerator.create(user_id: 1)
+
+# 冷蔵庫食材の作成
+Ingredient.all.each do |ingredient|
+  RefrigeratorIngredient.create(refrigerator_id: refrigerator.id, ingredient_id: ingredient.id, quantity: 1000)
+end
+
+# 肉じゃが
+recipe = Recipe.new(user_id: 1, name: '肉じゃが', calorie: 400, time: 30, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/肉じゃが.jpg'), filename: '肉じゃが.jpg')
 recipe.save
 
@@ -24,7 +32,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 584, quantity: 15)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 30)
 
 # ぶりの照り焼き
-recipe = Recipe.new(user_id: 1, name: 'ぶりの照り焼き', calorie: 400, time: 30, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: 'ぶりの照り焼き', calorie: 400, time: 30, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/ぶりの照り焼き.jpg'), filename: 'ぶりの照り焼き.jpg')
 recipe.save
 
@@ -36,7 +44,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 544, quantity: 15)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 644, quantity: 1)
 
 # だし巻き卵
-recipe = Recipe.new(user_id: 1, name: 'だし巻き卵', calorie: 100, time: 10, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: 'だし巻き卵', calorie: 100, time: 10, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/だし巻き卵.jpeg'), filename: 'だし巻き卵.jpeg')
 recipe.save
 
@@ -47,7 +55,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 584, quantity: 10)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 5)
 
 # カレーライス
-recipe = Recipe.new(user_id: 1, name: 'カレーライス', calorie: 800, time: 30, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: 'カレーライス', calorie: 800, time: 30, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/カレーライス.jpg'), filename: 'カレーライス.jpg')
 recipe.save
 
@@ -59,7 +67,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 634, quantity: 700)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 629, quantity: 6)
 
 # 焼きそば
-recipe = Recipe.new(user_id: 1, name: '焼きそば', calorie: 600, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: '焼きそば', calorie: 600, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/焼きそば.jpg'), filename: '焼きそば.jpg')
 recipe.save
 
@@ -73,7 +81,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 594, quantity: 30)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 684, quantity: 60)
 
 # オムライス
-recipe = Recipe.new(user_id: 1, name: 'オムライス', calorie: 750, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: 'オムライス', calorie: 750, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/オムライス.jpg'), filename: 'オムライス.jpg')
 recipe.save
 
@@ -87,7 +95,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 564, quantity: 2)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 660, quantity: 3)
 
 # 親子丼
-recipe = Recipe.new(user_id: 1, name: '親子丼', calorie: 650, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: '親子丼', calorie: 650, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/親子丼.jpeg'), filename: '親子丼.jpeg')
 recipe.save
 
@@ -101,7 +109,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 30)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 584, quantity: 30)
 
 # ハンバーグ
-recipe = Recipe.new(user_id: 1, name: 'ハンバーグ', calorie: 400, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: 'ハンバーグ', calorie: 400, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/ハンバーグ.jpg'), filename: 'ハンバーグ.jpg')
 recipe.save
 
@@ -116,7 +124,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 594, quantity: 15)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 574, quantity: 10)
 
 # 豚汁
-recipe = Recipe.new(user_id: 1, name: '豚汁', calorie: 300, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: '豚汁', calorie: 300, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/豚汁.jpg'), filename: '豚汁.jpg')
 recipe.save
 
@@ -131,7 +139,7 @@ RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 644, quantity: 5)
 RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: 614, quantity: 30)
 
 # 回鍋肉
-recipe = Recipe.new(user_id: 1, name: '回鍋肉', calorie: 400, time: 20, cook_flg: TRUE)
+recipe = Recipe.new(user_id: 1, name: '回鍋肉', calorie: 400, time: 20, cook_flg: true)
 recipe.image.attach(io: File.open('public/images/回鍋肉.jpg'), filename: '回鍋肉.jpg')
 recipe.save
 

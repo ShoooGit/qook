@@ -44,15 +44,11 @@ function changeUnit(selectBox) {
 };
 
 function defaultUnit() {
-  console.log("changeの実行");
-
   // 単位を全て取得
   const ingredientList = document.querySelectorAll(".select-box");
 
   // 取得した単位分ループ
-  ingredientList.forEach(function(ingredient) {
-    changeUnit(ingredient);
-  });
+  ingredientList.forEach( ingredient => changeUnit(ingredient) );
 };
 
 function selectUnit(e) {
@@ -61,8 +57,9 @@ function selectUnit(e) {
   }
 };
 
+
 // 初期表示のタイミングで、セレクトボックスで選択した値に応じた単位を表示する
-window.addEventListener('load',defaultUnit);
+window.addEventListener('turbolinks:load',defaultUnit);
 
 // セレクトボックスが選択されたタイミングで、選択した値に応じた単位を表示する
 window.addEventListener('change',selectUnit);
