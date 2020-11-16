@@ -62,7 +62,7 @@
 ・インフラをコード化
 
 ## データベース設計
-[![Image from Gyazo](https://i.gyazo.com/786ee996942486e4fc56ff8afd53fa51.png)](https://gyazo.com/786ee996942486e4fc56ff8afd53fa51)
+[![Image from Gyazo](https://i.gyazo.com/5d9e32b105523f7f593d8c59ee8f1afd.png)](https://gyazo.com/5d9e32b105523f7f593d8c59ee8f1afd)
 
 ## 画面遷移図
 [![Image from Gyazo](https://i.gyazo.com/2f50937e9574a344aed93de32b74c22a.png)](https://gyazo.com/2f50937e9574a344aed93de32b74c22a)
