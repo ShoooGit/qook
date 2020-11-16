@@ -66,10 +66,3 @@
 
 ## 画面遷移図
 [![Image from Gyazo](https://i.gyazo.com/2f50937e9574a344aed93de32b74c22a.png)](https://gyazo.com/2f50937e9574a344aed93de32b74c22a)
-
-## ローカルでの動作方法
-
-・HTML,CSS(BootStrap),JavaScript
-・Ruby 2.6.5  
-・Ruby on Rails 6.0.0  
-・AWS,CircleCI  
