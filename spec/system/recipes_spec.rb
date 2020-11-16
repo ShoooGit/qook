@@ -1,11 +1,41 @@
 require 'rails_helper'
 
+RSpec.describe 'レシピ一覧', type: :system do
+  before do
+    @recipe1 = FactoryBot.create(:recipe)
+    @user = @recipe1.user
+    @recipe2 = FactoryBot.build(:recipe)
+    @recipe2.user_id = @recipe1.user_id
+    @recipe2.name = 'test2'
+    @recipe2.cook_flg = false
+    @recipe2.save
+  end
+  context 'レシピ一覧が表示できるとき' do
+    it 'ログインしたユーザーは調理可能なレシピを閲覧できる' do
+      # ログインする
+      sign_in(@user)
+
+      # トップページには調理可能なレシピが存在することを確認する（画像）
+      expect(page).to have_selector("img[src$='test.jpg']")
+
+      # トップページには調理可能なレシピが存在することを確認する（テキスト）
+      expect(page).to have_content(@recipe1.name)
+      expect(page).to have_content(@recipe1.calorie)
+      expect(page).to have_content(@recipe1.time)
+
+      # トップページには調理不可能なレシピが存在しないことを確認する（テキスト）
+      expect(page).to have_no_content(@recipe2.name)
+    end
+  end
+end
+
 RSpec.describe 'レシピ登録', type: :system do
   before do
     @recipe_ingredient = FactoryBot.build(:recipe_ingredient)
     @recipe = @recipe_ingredient.recipe
     @user = @recipe.user
     @user.save
+    FactoryBot.create(:refrigerator, user_id: @user.id)
   end
   context 'レシピ登録ができるとき' do
     it 'ログインしたユーザーはレシピ登録ができる' do
@@ -98,12 +128,9 @@ RSpec.describe 'レシピ詳細', type: :system do
   before do
     @recipe1 = FactoryBot.create(:recipe)
     @recipe1_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe1.id)
-    @recipe2 = FactoryBot.create(:recipe)
-    @recipe2_ingredient = FactoryBot.create(:recipe_ingredient, recipe_id: @recipe2.id, quantity: 2)
     @refrigerator1 = FactoryBot.create(:refrigerator, user_id: @recipe1.user.id)
     @refrigerator1_ingredient = FactoryBot.create(:refrigerator_ingredient, refrigerator_id: @refrigerator1.id)
-    @refrigerator2 = FactoryBot.create(:refrigerator, user_id: @recipe2.user.id)
-    @refrigerator2_ingredient = FactoryBot.create(:refrigerator_ingredient, refrigerator_id: @refrigerator2.id)
+    @recipe2 = FactoryBot.create(:recipe, cook_flg: false)
   end
   context 'レシピ詳細が確認できるとき' do
     it 'ログインしたユーザーは自分が登録したレシピ詳細を確認できる' do
@@ -116,14 +143,14 @@ RSpec.describe 'レシピ詳細', type: :system do
       # レシピ1の登録内容が表示されていることを確認する
 
       # レシピ内容
-      expect(page).to have_content(@recipe1.name.to_s)
+      expect(page).to have_content(@recipe1.name)
       expect(page).to have_selector("img[src$='test.jpg']")
-      expect(page).to have_content(@recipe1.calorie.to_s)
-      expect(page).to have_content(@recipe1.time.to_s)
+      expect(page).to have_content(@recipe1.calorie)
+      expect(page).to have_content(@recipe1.time)
 
       # レシピの食材
-      expect(page).to have_content(@recipe1_ingredient.ingredient.name.to_s)
-      expect(page).to have_content(@recipe1_ingredient.quantity.to_s)
+      expect(page).to have_content(@recipe1_ingredient.ingredient.name)
+      expect(page).to have_content(@recipe1_ingredient.quantity)
 
       # 編集ページのリンクが存在することを確認する
       expect(page).to have_link(href: "/recipes/#{@recipe1.id}/edit")
@@ -155,7 +182,7 @@ RSpec.describe 'レシピ詳細', type: :system do
   end
   context 'レシピ詳細が確認できないとき' do
     it 'ログインしていないとレシピ詳細ページに遷移できない' do
-      # レシピ登録ページに移動する
+      # レシピ詳細ページに移動する
       visit recipe_path(@recipe1.id)
       # ログインページに遷移させられる
       expect(current_path).to eq new_user_session_path
@@ -163,7 +190,7 @@ RSpec.describe 'レシピ詳細', type: :system do
     it '別ユーザーのレシピ詳細ページに遷移できない' do
       # レシピ1を登録したユーザーでログインする
       sign_in(@recipe1.user)
-      # 別ユーザーのレシピ登録ページに移動する
+      # 別ユーザーのレシピ詳細ページに移動する
       visit recipe_path(@recipe2.id)
       # ログインページに遷移させられる
       expect(current_path).to eq root_path
@@ -171,12 +198,12 @@ RSpec.describe 'レシピ詳細', type: :system do
   end
   context '調理実行ができないとき' do
     it '調理に必要な食材が冷蔵庫に足りていない場合は調理実行ボタンを押下できない' do
-      # レシピ1を登録したユーザーでログインする
+      # レシピ2を登録したユーザーでログインする
       sign_in(@recipe2.user)
-      # トップページにレシピ2へのリンクが存在することを確認する
-      expect(page).to have_link(href: "/recipes/#{@recipe2.id}")
+
       # レシピ2の詳細ページへ遷移する
-      click_link(href: "/recipes/#{@recipe2.id}")
+      visit recipe_path(@recipe2.id)
+
       # レシピ2の詳細ページの調理実行ボタンが無効になっていること
       expect(page).to have_content('調理に必要な食材が足りません')
     end

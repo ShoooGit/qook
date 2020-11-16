@@ -62,5 +62,10 @@ RSpec.describe Recipe, type: :model do
       @recipe.valid?
       expect(@recipe.errors.full_messages).to include('調理時間は9999以下の値にしてください')
     end
+    it 'cook_flgが空だと登録できないこと' do
+      @recipe.cook_flg = nil
+      @recipe.valid?
+      expect(@recipe.errors.full_messages).to include('調理可否フラグは一覧にありません')
+    end
   end
 end

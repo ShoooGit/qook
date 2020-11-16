@@ -12,11 +12,12 @@ ja:
         nickname: ニックネーム
         email:    メールアドレス
       recipe:
-        user:    ユーザー
-        name:    レシピ名
-        image:   料理の写真
-        calorie: カロリー
-        time:    調理時間
+        user:     ユーザー
+        name:     レシピ名
+        image:    料理の写真
+        calorie:  カロリー
+        time:     調理時間
+        cook_flg: 調理可否フラグ
       recipe_ingredient:
         recipe_id:      食材
         recipe:         レシピ名

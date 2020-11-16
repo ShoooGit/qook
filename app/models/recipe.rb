@@ -8,6 +8,8 @@ class Recipe < ApplicationRecord
   # バリデーションの設定
   # 空白でないこと
   validates :name, presence: true
+  # true or falseであること
+  validates :cook_flg, inclusion: { in: [true, false] }
   validates :image, presence: { message: 'を選択してください' }
   # 0 ~ 9999
   with_options numericality: {
