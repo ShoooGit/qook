@@ -5,7 +5,13 @@
     <div class='recipe-contents'>
       <h2 class='title'>おすすめレシピ</h2>
     </div>
-
+    
+    <% if @recipes.blank? %>
+      <div class='flash-message'>
+        調理可能なレシピはありません
+      </div>
+    <% end %>
+    
     <!-- レシピ一覧の表示 -->
     <%= render "recipe", recipes: @recipes %>
 

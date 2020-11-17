@@ -11,10 +11,11 @@
   </div>
 
   <% if @recipes.blank? %>
-  <div class='flash-message'>
-    調理可能なレシピはありません
-  </div>
+    <div class='flash-message'>
+      調理可能なレシピはありません
+    </div>
   <% end %>
+  
   <!-- レシピ一覧の表示 -->
   <%= render "recipe", recipes: @recipes %>
 
