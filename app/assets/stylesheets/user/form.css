@@ -8,10 +8,11 @@
 }
 
 .form-wrap {
-  width: 40%;
+  width: 500px;
   background-color: white;
   padding-bottom: 60px;
   border-radius: 10px;
+  border: 1px solid red;
 }
 
 .form-header {
