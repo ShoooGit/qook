@@ -16,9 +16,9 @@
 
 .recipes-add-main {
   background-color: #FFEFD5;
-  width: 60vw;
+  width: 100%;
   min-width: 450px;
-  padding: 5vh 5vw;
+  padding: 50px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,14 +42,14 @@
 
 /* コンテナ */
 .recipe-container{
-  padding: 2vh 0;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
 }
 
 /* 入力フォーム */
 .form{
-  width: 70%;
+  width: 100%;
   padding: 3vh 2vw;
   border: 1px solid  #CC6633;
   border-radius:6px;
@@ -122,7 +122,7 @@
 
 /* 単位 */
 .unit{
-  font-size: 1vw;
+  font-size: 18px;
   width: 20%;
   font-weight: bold;
   display: flex;
