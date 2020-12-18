@@ -55,11 +55,7 @@
 　冷蔵庫の役割。食材の追加・削除を行う
 ・レスポンシブ対応（未実施）  
 ・AWSの使用(EC2,S3,Route53,ELB)    
-・CircleCIでテスト・デプロイを自動化  
-
-## 実装予定
-・レスポンシブ対応
-・インフラをコード化
+・CircleCIでテスト・デプロイを自動化
 
 ## データベース設計
 [![Image from Gyazo](https://i.gyazo.com/5d9e32b105523f7f593d8c59ee8f1afd.png)](https://gyazo.com/5d9e32b105523f7f593d8c59ee8f1afd)
